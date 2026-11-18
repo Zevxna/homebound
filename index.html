@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en" data-ed="mp">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HOMEBOUND MAAP Merch</title>
+<meta name="description" content="Pre-order MAAP merchandise printed with your own class seal. Bring Kamaya Point home this December.">
+<meta name="theme-color" content="#0a1636">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Each class edition re-colours the whole site; colours glide between editions. */
+@property --deep{syntax:"<color>";inherits:true;initial-value:#1b1016}
+@property --deep2{syntax:"<color>";inherits:true;initial-value:#3a2230}
+@property --accent{syntax:"<color>";inherits:true;initial-value:#e2a93f}
+@property --accent2{syntax:"<color>";inherits:true;initial-value:#c46f3a}
+:root{
+  --deep:#1b1016; --deep2:#3a2230; --accent:#e2a93f; --accent2:#c46f3a;
+  --paper:#f7f4ee; --card:#ffffff; --ink:#191c2b; --muted:#646a7d; --line:#e6e0d3;
+  --ok:#17845a; --err:#c0322a; --warn:#b36a14;
+  --display:"Cinzel","Trajan Pro",Georgia,serif;
+  --serif:"Cormorant Garamond",Georgia,serif;
+  --body:"Montserrat","Segoe UI",system-ui,sans-serif;
+  color-scheme:light;
+  transition:--deep .8s ease,--deep2 .8s ease,--accent .8s ease,--accent2 .8s ease;
+}
+html[data-ed="xp"]{--deep:#1f0e13;--deep2:#43202a;--accent:#e0606a;--accent2:#cdb98c}
+html[data-ed="hz"]{--deep:#1b1016;--deep2:#3a2230;--accent:#e9ad43;--accent2:#c9743d}
+html[data-ed="cz"]{--deep:#0b2125;--deep2:#15403f;--accent:#ee5140;--accent2:#5fc7b6}
+html[data-ed="mp"]{--deep:#0a1636;--deep2:#17336f;--accent:#6d97ff;--accent2:#cbd6ee}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.6 var(--body);overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:.04em;text-wrap:balance;margin:0}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.wrap{width:min(1180px,100% - 32px);margin-inline:auto}
+.eyebrow{font:700 11.5px/1.3 var(--body);letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;padding:13px 24px;font-weight:700;cursor:pointer;text-decoration:none;transition:transform .2s,box-shadow .2s,background .2s;overflow:hidden;isolation:isolate}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(0)}
+.btn-accent{background:var(--accent);color:#16110c;box-shadow:0 10px 30px -10px var(--accent)}
+.btn-accent::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.55) 50%,transparent 70%);transform:translateX(-120%);transition:transform .7s;z-index:-1}
+.btn-accent:hover::after{transform:translateX(120%)}
+.btn-dark{background:var(--deep);color:#fff}
+.btn-dark:hover{background:var(--deep2)}
+.btn-line{background:transparent;border:1.5px solid rgba(255,255,255,.4);color:#fff}
+.btn-line:hover{border-color:var(--accent);color:var(--accent)}
+.btn[disabled]{opacity:.5;cursor:not-allowed;transform:none}
+
+/* scroll progress */
+#scrollbar{position:fixed;top:0;left:0;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--accent),var(--accent2));z-index:80}
+
+/* top bar */
+.top{position:fixed;top:0;left:0;right:0;z-index:40;transition:background .3s,backdrop-filter .3s,box-shadow .3s;color:#fff}
+.top.solid{background:color-mix(in srgb,var(--deep) 88%,transparent);backdrop-filter:blur(12px);box-shadow:0 6px 30px -12px rgba(0,0,0,.5)}
+.top .wrap{display:flex;align-items:center;gap:20px;height:64px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand img{width:34px;height:34px;object-fit:contain;transition:transform .6s}
+.brand:hover img{transform:rotate(-12deg) scale(1.08)}
+.brand b{font:800 17px var(--display);letter-spacing:.24em}
+.brand small{display:block;font:600 8.5px var(--body);letter-spacing:.26em;color:var(--accent)}
+.nav{display:flex;gap:22px;margin-left:auto}
+.nav a{font-size:13px;font-weight:600;text-decoration:none;opacity:.8;position:relative}
+.nav a::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:2px;background:var(--accent);transform:scaleX(0);transition:transform .25s}
+.nav a:hover{opacity:1}.nav a:hover::after{transform:scaleX(1)}
+.bagbtn{display:flex;align-items:center;gap:8px;background:var(--accent);color:#16110c;border:0;border-radius:999px;padding:8px 14px;font-weight:800;cursor:pointer;font-size:13px}
+.bagbtn.bump{animation:bump .5s}
+@keyframes bump{30%{transform:scale(1.25)}60%{transform:scale(.92)}}
+@media (max-width:820px){.nav{display:none}.bagbtn{margin-left:auto}}
+.isdemo .hero{padding-top:150px}
+@media (max-width:520px){.isdemo .hero{padding-top:165px}}
+.demo{position:relative;z-index:41;background:#fff1c9;color:#6b4e00;text-align:center;font-size:12px;padding:6px 12px;font-weight:600}
+
+/* HERO */
+.hero{position:relative;color:#fff;background:radial-gradient(1000px 600px at 80% 20%,var(--deep2),transparent 70%),var(--deep);overflow:hidden;padding:110px 0 70px}
+#sea{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:30px;align-items:center}
+@media (max-width:900px){.hero .wrap{grid-template-columns:1fr}.hero{padding-top:90px}}
+.hero .wrap>*{min-width:0}
+.title{font:800 clamp(34px,5.4vw,84px)/.92 var(--display);letter-spacing:.12em;margin:14px 0 4px;
+  background:linear-gradient(100deg,#fff 0%,#fff 38%,var(--accent) 50%,#fff 62%,#fff 100%);background-size:250% 100%;
+  -webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s ease-in-out infinite}
+@keyframes shine{0%,100%{background-position:100% 0}50%{background-position:0 0}}
+.lead{font:italic 600 clamp(22px,3vw,32px)/1.2 var(--serif);color:var(--accent2);margin:6px 0 14px}
+.hero p.sub{color:rgba(255,255,255,.78);max-width:50ch;margin:0 0 24px}
+.edtiles{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:24px}
+@media (max-width:520px){.edtiles{grid-template-columns:repeat(2,1fr)}}
+.edt{position:relative;display:flex;gap:10px;align-items:center;text-align:left;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:10px;cursor:pointer;transition:transform .25s,background .25s,border-color .25s}
+.edt:hover{transform:translateY(-3px);background:rgba(255,255,255,.1)}
+.edt img{width:40px;height:40px;object-fit:contain;flex:none;filter:drop-shadow(0 2px 6px rgba(0,0,0,.4))}
+.edt b{display:block;font:700 11px var(--display);letter-spacing:.06em;line-height:1.15}
+.edt span{font-size:10.5px;opacity:.7}
+.edt[aria-pressed="true"]{background:color-mix(in srgb,var(--accent) 22%,transparent);border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),0 10px 30px -12px var(--accent)}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+.clock{display:flex;gap:10px;margin-top:28px;align-items:flex-end;flex-wrap:wrap}
+.clock div{min-width:64px;text-align:center;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:8px 6px}
+.clock b{display:block;font:800 26px var(--display);font-variant-numeric:tabular-nums;color:#fff}
+.clock span{font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;opacity:.65}
+.clock em{font:italic 600 15px var(--serif);color:var(--accent2);margin-left:6px;align-self:center}
+.voyage{margin-top:26px;max-width:470px}
+.rope{position:relative;height:30px}
+.rope::before{content:"";position:absolute;left:0;right:0;top:22px;border-top:2px dashed rgba(255,255,255,.25)}
+.rope i{position:absolute;left:0;top:21px;height:4px;width:0;border-radius:4px;background:linear-gradient(90deg,var(--accent2),var(--accent));transition:width 1.4s cubic-bezier(.2,.8,.2,1)}
+.ship{position:absolute;top:0;left:0;width:30px;transform:translateX(-50%);transition:left 1.4s cubic-bezier(.2,.8,.2,1);animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateX(-50%) translateY(-3px) rotate(-3deg)}}
+.anchor{position:absolute;right:-6px;top:10px;font-size:16px}
+.voyage small{display:block;margin-top:6px;font-size:12px;opacity:.8}
+.stage{position:relative;aspect-ratio:1/1;max-width:520px;width:100%;justify-self:center;perspective:1000px}
+.halo{position:absolute;inset:6%;border-radius:50%;background:conic-gradient(from 0deg,transparent,var(--accent),transparent 30%,var(--accent2),transparent 60%,var(--accent),transparent);filter:blur(28px);opacity:.45;animation:spin 14s linear infinite}
+.ring{position:absolute;inset:3%;border-radius:50%;border:1px solid rgba(255,255,255,.18)}
+.ring::after{content:"";position:absolute;inset:7%;border-radius:50%;border:1px dashed rgba(255,255,255,.14);animation:spin 60s linear infinite reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+.tilt{position:absolute;inset:10%;transform-style:preserve-3d;transition:transform .15s ease-out}
+.seal3d{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.3,1.4,.4,1)}
+.seal3d img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;backface-visibility:hidden;filter:drop-shadow(0 25px 40px rgba(0,0,0,.55))}
+.seal3d img.back{transform:rotateY(180deg)}
+.floaty{position:absolute;width:27%;border-radius:16px;overflow:hidden;border:3px solid #fff;box-shadow:0 20px 40px -10px rgba(0,0,0,.6);background:#fff;animation:float 6s ease-in-out infinite}
+.floaty.f1{left:-2%;bottom:6%;transform:rotate(-8deg)}
+.floaty.f2{right:-2%;top:10%;animation-delay:-2s;transform:rotate(7deg)}
+.floaty.f3{right:4%;bottom:-2%;animation-delay:-4s;transform:rotate(-3deg)}
+@keyframes float{50%{translate:0 -10px}}
+@media (max-width:900px){.stage{max-width:400px}}
+@media (max-width:520px){.title{font-size:12.2vw;letter-spacing:.05em}}
+
+/* marquee */
+.marquee{background:var(--accent);color:#16110c;overflow:hidden;white-space:nowrap;padding:12px 0;font:700 13px var(--display);letter-spacing:.2em}
+.marquee div{display:inline-block;animation:mq 40s linear infinite}
+.marquee span{margin:0 22px}
+.marquee em{font:italic 600 17px var(--serif);letter-spacing:.02em;text-transform:none}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+section{padding:90px 0;position:relative}
+.sh{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:34px}
+.sh h2{font-size:clamp(28px,4.2vw,46px);color:var(--ink)}
+.sh p{margin:8px 0 0;color:var(--muted);max-width:58ch}
+.edpill{display:inline-flex;align-items:center;gap:8px;font:700 11.5px var(--body);letter-spacing:.12em;text-transform:uppercase;background:color-mix(in srgb,var(--accent) 16%,#fff);color:color-mix(in srgb,var(--accent) 55%,#000);border-radius:99px;padding:6px 12px 6px 6px}
+.edpill img{width:24px;height:24px;object-fit:contain}
+.rv{transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.rv.pre{transform:translateY(26px)}
+
+/* explorer */
+.explore{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:stretch}
+@media (max-width:900px){.explore{grid-template-columns:1fr}}
+.viewer{position:relative;border-radius:28px;overflow:hidden;background:#e7e6ea;aspect-ratio:1/1;perspective:1200px;box-shadow:0 40px 80px -40px rgba(0,0,0,.45)}
+.viewer .imgs{position:absolute;inset:0;transition:transform .2s ease-out;transform-style:preserve-3d}
+.viewer .imgs img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.04);transition:opacity .6s,transform 1.2s}
+.viewer .imgs img.on{opacity:1;transform:scale(1)}
+.viewer .glare{position:absolute;inset:0;pointer-events:none;background:radial-gradient(400px 300px at var(--gx,50%) var(--gy,30%),rgba(255,255,255,.35),transparent 60%);mix-blend-mode:soft-light}
+.viewer .cap{position:absolute;left:18px;bottom:18px;right:18px;display:flex;justify-content:space-between;align-items:flex-end;gap:10px;flex-wrap:wrap}
+.viewer .name{background:rgba(255,255,255,.88);backdrop-filter:blur(8px);border-radius:14px;padding:10px 14px}
+.viewer .name b{font:800 18px var(--display);letter-spacing:.08em;color:var(--ink)}
+.viewer .name span{display:block;font-size:12px;color:var(--muted)}
+.views{display:flex;gap:6px;background:rgba(255,255,255,.88);backdrop-filter:blur(8px);border-radius:99px;padding:4px}
+.views button{border:0;background:transparent;border-radius:99px;padding:7px 12px;font-size:12px;font-weight:700;cursor:pointer}
+.views button[aria-pressed="true"]{background:var(--deep);color:#fff}
+.tabs{display:grid;gap:8px;align-content:start}
+.tab{display:grid;grid-template-columns:auto 52px 1fr;gap:14px;align-items:center;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:10px 14px;cursor:pointer;transition:transform .25s,border-color .25s,box-shadow .25s}
+.tab:hover{transform:translateX(4px)}
+.tab .n{font:800 13px var(--display);color:var(--muted);width:22px}
+.tab img{width:52px;height:52px;border-radius:12px;object-fit:cover}
+.tab b{display:block;font:700 13.5px var(--display);letter-spacing:.06em}
+.tab span{font-size:12px;color:var(--muted);line-height:1.4;display:block}
+.tab[aria-selected="true"]{border-color:var(--accent);box-shadow:0 12px 30px -16px var(--accent);transform:translateX(6px)}
+.tab[aria-selected="true"] .n{color:var(--accent)}
+.tab .bar{grid-column:1/-1;height:3px;border-radius:3px;background:var(--line);overflow:hidden;display:none}
+.tab[aria-selected="true"] .bar{display:block}
+.tab .bar i{display:block;height:100%;width:0;background:var(--accent)}
+.tab .bar i.run{animation:fill 6s linear forwards}
+@keyframes fill{to{width:100%}}
+@media (max-width:900px){.tabs{grid-auto-flow:column;grid-auto-columns:80%;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px}.tab{scroll-snap-align:start}.tab:hover,.tab[aria-selected="true"]{transform:none}}
+
+/* sets */
+.sets{background:radial-gradient(900px 500px at 10% 0%,var(--deep2),transparent 70%),var(--deep);color:#fff;overflow:hidden}
+.sets .sh h2{color:#fff}.sets .sh p{color:rgba(255,255,255,.7)}
+.setgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+@media (max-width:1250px){.setgrid{grid-template-columns:repeat(3,1fr)}}
+.shirtc{background:linear-gradient(160deg,rgba(255,255,255,.5),rgba(255,255,255,.08))}
+.shirtc .badge{color:#16110c}
+@media (max-width:900px){.setgrid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.setgrid{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:86%;overflow-x:auto;scroll-snap-type:x mandatory;padding:16px 2px 12px;margin:0 -16px;padding-inline:16px;scrollbar-width:none}.setc{scroll-snap-align:center}.swipe{display:block!important}}
+.setc{position:relative;border-radius:24px;padding:1px;background:rgba(255,255,255,.12);transform-style:preserve-3d;transition:transform .2s ease-out}
+.setc.feature{background:conic-gradient(from var(--a,0deg),var(--accent),transparent 25%,var(--accent2) 50%,transparent 75%,var(--accent));animation:rot 6s linear infinite}
+@property --a{syntax:"<angle>";inherits:false;initial-value:0deg}
+@keyframes rot{to{--a:360deg}}
+.setin{height:100%;border-radius:23px;background:linear-gradient(180deg,color-mix(in srgb,var(--deep2) 70%,#000),var(--deep));padding:20px;display:flex;flex-direction:column;gap:14px}
+.badge{position:absolute;top:-12px;right:18px;background:var(--accent);color:#16110c;font:800 10px var(--body);letter-spacing:.12em;text-transform:uppercase;padding:5px 11px;border-radius:99px;z-index:2}
+.fan{position:relative;height:150px;margin:4px 0}
+.fan img{position:absolute;left:50%;top:50%;width:92px;height:92px;object-fit:cover;border-radius:16px;border:3px solid #fff;box-shadow:0 14px 26px -10px rgba(0,0,0,.7);transition:transform .5s cubic-bezier(.3,1.4,.4,1)}
+.setc h3{font-size:20px;color:#fff}
+.setc .count{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.setc ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.setc li{font-size:11.5px;background:rgba(255,255,255,.08);border-radius:99px;padding:4px 10px}
+.price{font:800 34px var(--display);font-variant-numeric:tabular-nums;margin-top:auto}
+.price small{display:block;font:500 11.5px var(--body);opacity:.65;letter-spacing:.02em}
+
+/* shirt */
+.shirt{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+@media (max-width:900px){.shirt{grid-template-columns:1fr}}
+.tee{position:relative;aspect-ratio:1/1;border-radius:32px;overflow:hidden;background:#e9e9ec;box-shadow:0 40px 80px -40px rgba(0,0,0,.45)}
+.tee img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .6s,transform .8s;opacity:0;transform:rotateY(25deg) scale(.96)}
+.tee img.on{opacity:1;transform:none}
+.hot{position:absolute;z-index:2;display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;background:rgba(255,255,255,.92);border-radius:99px;padding:6px 10px 6px 6px;box-shadow:0 8px 20px -8px rgba(0,0,0,.4);transition:opacity .4s}
+.hot i{width:18px;height:18px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 var(--accent);animation:ping 2s infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 70%,transparent)}100%{box-shadow:0 0 0 14px transparent}}
+.tee .views{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);z-index:3}
+.sizes{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 18px}
+.sizes button{min-width:52px;border:1.5px solid var(--line);background:var(--card);border-radius:12px;padding:10px 0;font-weight:800;cursor:pointer;transition:all .2s}
+.sizes button:hover{border-color:var(--accent)}
+.sizes button[aria-pressed="true"]{background:var(--deep);border-color:var(--deep);color:#fff;transform:translateY(-2px)}
+.feat{list-style:none;padding:0;margin:16px 0 22px;display:grid;gap:10px}
+.feat li{display:flex;gap:12px;align-items:flex-start;font-size:14px}
+.feat li b{display:inline-grid;place-items:center;flex:none;width:26px;height:26px;border-radius:50%;background:color-mix(in srgb,var(--accent) 20%,#fff);color:color-mix(in srgb,var(--accent) 50%,#000);font-size:12px}
+.bigprice{font:800 40px var(--display);font-variant-numeric:tabular-nums}
+.qrow{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.stepper{display:inline-flex;align-items:center;border:1.5px solid var(--line);border-radius:999px;background:var(--card)}
+.stepper button{width:40px;height:44px;border:0;background:transparent;font-size:18px;font-weight:800;cursor:pointer}
+.stepper b{min-width:26px;text-align:center}
+
+/* checkout */
+.cosec{background:linear-gradient(180deg,var(--paper),#efe9dd)}
+.steps3{display:flex;gap:8px;margin-bottom:22px;flex-wrap:wrap}
+.steps3 span{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;color:var(--muted)}
+.steps3 span b{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--card);border:1.5px solid var(--line)}
+.steps3 span.on{color:var(--ink)}.steps3 span.on b{background:var(--accent);border-color:var(--accent);color:#16110c}
+.steps3 i{width:30px;height:2px;background:var(--line);align-self:center}
+.co{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+@media (max-width:900px){.co{grid-template-columns:1fr}}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:24px;box-shadow:0 30px 60px -45px rgba(0,0,0,.35)}
+.panel h3{font-size:16px;margin-bottom:14px}
+.lines{display:grid;gap:10px}
+.line{display:grid;grid-template-columns:60px 1fr auto;gap:12px;align-items:center;padding:10px;border:1px solid var(--line);border-radius:16px;animation:pop .4s}
+@keyframes pop{from{transform:scale(.96)}}
+.line img{width:60px;height:60px;border-radius:12px;object-fit:cover}
+.line b{font-size:13.5px}
+.line .meta{font-size:11.5px;color:var(--muted)}
+.line .r{font-weight:800;font-variant-numeric:tabular-nums}
+.qty{display:inline-flex;align-items:center;gap:8px;margin-top:4px}
+.qty button{width:26px;height:26px;border-radius:8px;border:1px solid var(--line);background:#fff;cursor:pointer;font-weight:800}
+.rm{background:none;border:0;color:var(--err);font-size:12px;cursor:pointer;padding:0;margin-left:6px}
+.empty{color:var(--muted);font-size:14px;padding:26px;border:1.5px dashed var(--line);border-radius:16px;text-align:center}
+.nudge{margin-top:12px;display:flex;gap:12px;align-items:center;background:color-mix(in srgb,var(--accent) 12%,#fff);border-radius:16px;padding:10px 12px;font-size:13px}
+.nudge img{width:44px;height:44px;border-radius:10px;object-fit:cover}
+.total{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--line);margin-top:16px;padding-top:14px}
+.total b{font:800 30px var(--display);font-variant-numeric:tabular-nums}
+.field{display:grid;gap:5px;margin-bottom:12px}
+.field label{font-size:12.5px;font-weight:700}
+.field input,.field select{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;background:#fff;transition:border-color .2s,box-shadow .2s}
+.field input:focus,.field select:focus{border-color:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 20%,transparent);outline:none}
+.field .hint{font-size:11.5px;color:var(--muted)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:480px){.two{grid-template-columns:1fr}}
+.pay{display:grid;grid-template-columns:150px 1fr;gap:16px;align-items:center;border:1px solid var(--line);border-radius:18px;padding:14px;margin:6px 0 14px;background:linear-gradient(135deg,#fff,color-mix(in srgb,var(--accent) 7%,#fff))}
+.pay img{border-radius:10px}
+.pay .amt{font:800 28px var(--display);font-variant-numeric:tabular-nums}
+@media (max-width:480px){.pay{grid-template-columns:1fr}.pay img{max-width:210px;margin:auto}}
+.drop{display:block;border:1.5px dashed #bcb4a2;border-radius:14px;padding:16px;text-align:center;cursor:pointer;background:#fbf9f4;font-size:13px;color:var(--muted);transition:all .2s}
+.drop:hover{border-color:var(--accent)}
+.drop.has{border-style:solid;border-color:var(--ok);color:var(--ok);background:#ecf7f1}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:13px;margin:12px 0 14px}
+.check input{margin-top:3px;width:18px;height:18px;accent-color:var(--accent)}
+.msg{font-size:13px;border-radius:12px;padding:10px 12px;margin-bottom:12px}
+.msg.err{background:#fdeceb;color:var(--err)}
+.done{text-align:center;padding:16px 6px}
+.done .oid{font:800 36px var(--display);letter-spacing:.08em;margin:6px 0}
+
+/* how */
+.timeline{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.timeline::before{content:"";position:absolute;left:4%;right:4%;top:22px;height:2px;background:var(--line)}
+.timeline .fillline{position:absolute;left:4%;right:4%;top:22px;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));transform-origin:0 50%;transform:scaleX(.08);transition:transform 1.4s cubic-bezier(.2,.8,.2,1)}
+@media (max-width:860px){#v-help .swipe{display:block!important}.timeline{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:78%;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;scrollbar-width:none}.tstep{scroll-snap-align:start;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px}.timeline::before,.timeline .fillline{display:none}}
+.tstep{position:relative}
+.tstep .dot{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--card);border:2px solid var(--accent);font:800 15px var(--display);color:var(--ink);margin-bottom:14px;position:relative;z-index:1}
+.tstep .d{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.tstep h3{font-size:16px;margin:4px 0 6px}
+.tstep p{margin:0;font-size:13px;color:var(--muted)}
+
+.tf{display:grid;grid-template-columns:.9fr 1.1fr;gap:24px;align-items:start}
+@media (max-width:860px){.tf{grid-template-columns:1fr}}
+details{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 18px;margin-bottom:8px;transition:border-color .2s}
+details[open]{border-color:var(--accent)}
+summary{cursor:pointer;font-weight:700;font-size:14px;list-style:none;display:flex;justify-content:space-between;gap:10px}
+summary::after{content:"+";font-size:20px;line-height:1;color:var(--accent);transition:transform .3s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{margin:10px 0 2px;font-size:13.5px;color:var(--muted)}
+.status{margin-top:12px;font-size:13.5px}
+.pill{display:inline-block;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:800}
+.pill.p{background:#fff1d6;color:var(--warn)}.pill.v{background:#e3f4ea;color:var(--ok)}.pill.x{background:#fdeceb;color:var(--err)}
+
+footer{background:var(--deep);color:rgba(255,255,255,.7);font-size:12.5px;padding:40px 0}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+footer b{color:#fff;font-family:var(--display);letter-spacing:.18em}
+
+/* configurator */
+.modal{position:fixed;inset:0;background:rgba(8,10,20,.65);backdrop-filter:blur(6px);display:none;align-items:flex-end;justify-content:center;z-index:70}
+.modal.open{display:flex;animation:fade .25s}
+@keyframes fade{from{background:rgba(8,10,20,0)}}
+.sheet{background:var(--paper);width:min(880px,100%);max-height:94vh;overflow:auto;border-radius:26px 26px 0 0;display:grid;grid-template-columns:1fr 1fr;animation:up .4s cubic-bezier(.2,.9,.3,1.1)}
+@keyframes up{from{transform:translateY(40px)}}
+@media (min-width:700px){.modal{align-items:center}.sheet{border-radius:26px}}
+@media (max-width:699px){.sheet{grid-template-columns:1fr}}
+.pv{position:relative;background:#e7e6ea;min-height:320px}
+.pv img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .45s;opacity:0}
+.pv img.on{opacity:1}
+.pv .pvtabs{position:absolute;left:12px;bottom:12px;display:flex;gap:6px;flex-wrap:wrap}
+.pv .pvtabs button{border:0;background:rgba(255,255,255,.88);border-radius:99px;padding:6px 10px;font-size:11.5px;font-weight:700;cursor:pointer}
+.pv .pvtabs button[aria-pressed="true"]{background:var(--deep);color:#fff}
+.cfg{padding:22px 22px 20px}
+.cfg .hd{display:flex;justify-content:space-between;align-items:start;gap:10px}
+.cfg h3{font-size:22px}
+.x{background:none;border:0;font-size:28px;line-height:1;cursor:pointer;color:var(--muted)}
+.opt{margin:14px 0}
+.opt>span{display:block;font-size:12px;font-weight:800;letter-spacing:.06em;margin-bottom:7px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{border:1.5px solid var(--line);background:#fff;border-radius:12px;padding:8px 12px;cursor:pointer;font-size:13px;display:flex;align-items:center;gap:8px;font-weight:600;transition:all .2s}
+.chips button:hover{border-color:var(--accent)}
+.chips button[aria-pressed="true"]{border-color:var(--deep);background:var(--deep);color:#fff}
+.sw{width:16px;height:16px;border-radius:50%;border:1px solid rgba(0,0,0,.25);display:inline-block}
+.cfg .foot{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:18px;border-top:1px solid var(--line);padding-top:16px}
+.cfg .foot b{font:800 28px var(--display);font-variant-numeric:tabular-nums}
+.flyer{position:fixed;z-index:90;width:70px;height:70px;border-radius:14px;object-fit:cover;pointer-events:none;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:transform .75s cubic-bezier(.5,-.3,.7,1),opacity .75s}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:95}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(140px);background:var(--deep);color:#fff;padding:11px 18px;border-radius:99px;font-size:13px;font-weight:600;z-index:85;transition:transform .35s;box-shadow:0 10px 30px -10px rgba(0,0,0,.5)}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.sr{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;border:0!important;overflow:hidden;clip:rect(0 0 0 0);opacity:0}
+
+.edmini{display:flex;align-items:center;gap:6px;background:color-mix(in srgb,var(--accent) 12%,#fff);border-radius:999px;padding:5px 6px}
+.sets .edmini{background:rgba(255,255,255,.08)}
+.edmini button{display:flex;align-items:center;gap:6px;border:0;background:transparent;border-radius:999px;padding:4px 10px 4px 4px;cursor:pointer;font:800 10.5px var(--body);letter-spacing:.08em;color:inherit;opacity:.7;transition:all .25s}
+.edmini button img{width:26px;height:26px;object-fit:contain}
+.edmini button[aria-pressed="true"]{background:var(--accent);color:#16110c;opacity:1}
+.edmini button:not([aria-pressed="true"]) span{display:none}
+.edmini button:hover{opacity:1}
+
+/* The Academy crest is dark blue: lift it on dark backgrounds so it reads. */
+.hero img[src*="/mp/seal_color"],.top img[src*="/mp/seal_color"],.sets img[src*="/mp/seal_color"],.dock img[src*="/mp/seal_color"]{filter:brightness(2.4) saturate(.55) drop-shadow(0 0 1px rgba(255,255,255,.6)) drop-shadow(0 18px 30px rgba(0,0,0,.5))}
+/* page views: one screen per page instead of one long scroll */
+.view{animation:viewIn .45s cubic-bezier(.2,.8,.2,1)}
+.view[hidden]{display:none}
+@keyframes viewIn{from{transform:translateY(16px)}}
+.view>section{padding:100px 0 50px;min-height:calc(100vh - 0px)}
+.view>section.sets{min-height:100vh}
+.isdemo .view>section{padding-top:136px}
+.seg{display:inline-flex;gap:4px;background:color-mix(in srgb,var(--ink) 7%,transparent);border-radius:999px;padding:4px;margin-bottom:22px}
+.sets .seg{background:rgba(255,255,255,.08)}
+.seg a{text-decoration:none;font-size:13px;font-weight:700;padding:8px 16px;border-radius:999px;opacity:.75}
+.seg a[aria-current="page"]{background:var(--accent);color:#16110c;opacity:1}
+.nav a[aria-current="page"]{opacity:1}.nav a[aria-current="page"]::after{transform:scaleX(1)}
+.jump{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:26px 0 40px}
+.jc{display:grid;gap:2px;text-decoration:none;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px 18px;transition:transform .25s,border-color .25s,box-shadow .25s}
+.jc:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 18px 30px -20px var(--accent)}
+.jc .jn{font:800 12px var(--display);color:var(--accent)}
+.jc b{font:700 16px var(--display);letter-spacing:.05em}
+.jc span:last-child{font-size:12.5px;color:var(--muted)}
+@media (max-width:820px){.jump{grid-template-columns:1fr 1fr}}
+.dock{display:none}
+@media (max-width:820px){
+  body{padding-bottom:74px}
+  .dock{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:8px;right:8px;bottom:8px;z-index:60;background:color-mix(in srgb,var(--deep) 92%,transparent);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.12);border-radius:22px;padding:6px;box-shadow:0 14px 40px -12px rgba(0,0,0,.6)}
+  .dock a{position:relative;display:grid;justify-items:center;gap:2px;color:rgba(255,255,255,.7);text-decoration:none;font-size:10px;font-weight:700;padding:6px 0;border-radius:16px}
+  .dock svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .dock a[aria-current="page"]{color:#16110c;background:var(--accent)}
+  .dock i{position:absolute;top:2px;right:18%;min-width:16px;height:16px;border-radius:8px;background:#fff;color:#16110c;font:800 10px/16px var(--body);font-style:normal;text-align:center;padding:0 4px}
+  .toast{bottom:92px}
+  .view>section{padding-top:84px}
+  .isdemo .view>section{padding-top:120px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="scrollbar"></div>
+<header class="top" id="top">
+  <div class="wrap">
+    <a class="brand" href="#home"><img id="brandSeal" src="img/mp/seal_color.webp" alt=""><span><b>HOMEBOUND</b><small>MAAP MERCH · CLASS 2028</small></span></a>
+    <nav class="nav" aria-label="Pages"><a href="#home" data-nav="home">Home</a><a href="#shop" data-nav="shop">Sets</a><a href="#pieces" data-nav="pieces">Pieces</a><a href="#help" data-nav="help">Track &amp; FAQ</a></nav>
+    <button class="bagbtn" id="bagTop" type="button" aria-label="Go to bag">Bag <span id="bagCount">0</span></button>
+  </div>
+</header>
+
+<main id="main">
+<div class="view" id="v-home">
+<!-- HERO -->
+<div class="hero">
+  <canvas id="sea" aria-hidden="true"></canvas>
+  <div class="demo" id="demoBar" hidden style="position:absolute;top:64px;left:0;right:0">Preview mode: orders are not saved yet. Connect the Google Sheet (see SETUP) to go live.</div>
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">HERZIVANEANS · Class of 2028 presents</div>
+      <h1 class="title">HOMEBOUND</h1>
+      <div class="lead">Bring Kamaya Point home this December.</div>
+      <p class="sub">Merch printed with <b id="heroEdName">the HERZIVANEANS seal</b>, for your desk at home, a gift for your family, and a keepsake of the Academy wherever you sail.</p>
+      <div class="eyebrow" style="color:rgba(255,255,255,.6);margin-bottom:10px">Tap your edition</div>
+      <div class="edtiles" id="edPick" role="group" aria-label="Edition"></div>
+      <div class="hero-cta">
+        <a class="btn btn-accent" href="#shop">Build my set</a>
+        <a class="btn btn-line" href="#pieces">Explore the pieces</a>
+      </div>
+      <div class="clock" aria-label="Time left to order">
+        <div><b id="cD">--</b><span>days</span></div><div><b id="cH">--</b><span>hrs</span></div><div><b id="cM">--</b><span>min</span></div><div><b id="cS">--</b><span>sec</span></div>
+        <em>until orders close · 30 Nov</em>
+      </div>
+      <div class="voyage">
+        <div class="rope"><i id="ropeFill"></i>
+          <svg class="ship" id="ship" viewBox="0 0 64 48" aria-hidden="true"><path d="M30 4v26H12z" fill="#fff"/><path d="M34 8v22h16z" fill="currentColor" style="color:var(--accent)"/><path d="M4 32h56l-8 12H12z" fill="#fff"/><path d="M32 2v32" stroke="#fff" stroke-width="2"/></svg>
+          <span class="anchor" aria-hidden="true">⚓</span></div>
+        <small id="ropeText">Sets reserved: loading…</small>
+      </div>
+    </div>
+    <div class="stage" id="stage" aria-hidden="true">
+      <div class="halo"></div><div class="ring"></div>
+      <div class="tilt" id="tilt"><div class="seal3d" id="seal3d"><img class="front" id="sealA" src="img/mp/seal_color.webp" alt=""><img class="back" id="sealB" src="img/mp/seal_color.webp" alt=""></div></div>
+      <div class="floaty f1"><img id="fl1" src="img/mp/mug.jpg" alt=""></div>
+      <div class="floaty f2"><img id="fl2" src="img/mp/pin_classic.jpg" alt=""></div>
+      <div class="floaty f3"><img id="fl3" src="img/mp/notebook_navy.jpg" alt=""></div>
+    </div>
+  </div>
+</div>
+<div class="marquee" aria-hidden="true"><div id="mq"></div></div>
+<div class="jump wrap">
+  <a href="#shop" class="jc"><span class="jn">01</span><b>Build a set</b><span>4 sets from ₱120</span></a>
+  <a href="#pieces" class="jc"><span class="jn">02</span><b>See the pieces</b><span>7 items up close</span></a>
+  <a href="#shop" class="jc" data-openshirt="1"><span class="jn">03</span><b>Add the shirt</b><span>Optional · ₱370 · with any set</span></a>
+  <a href="#help" class="jc"><span class="jn">04</span><b>Track &amp; FAQ</b><span>Order status, how it works</span></a>
+</div>
+</div>
+<div class="view" id="v-pieces" hidden>
+
+<!-- EXPLORE -->
+<section id="exploreSec">
+  <div class="wrap">
+    <div class="seg" role="tablist" aria-label="Shop"><a href="#shop" data-nav="shop">Sets</a><a href="#pieces" data-nav="pieces">Pieces</a></div>
+    <div class="sh rv"><div><div class="eyebrow">The collection</div><h2>Seven pieces. One seal: yours.</h2>
+      <p>Tap a piece to see it up close, flip between versions, and switch editions at the top to see your own class on everything.</p></div>
+      <div class="edmini" role="group" aria-label="Edition"></div></div>
+    <div class="explore rv">
+      <div class="viewer" id="viewer">
+        <div class="imgs" id="vImgs"></div><div class="glare"></div>
+        <div class="cap"><div class="name"><b id="vName">Mug</b><span id="vDesc"></span></div><div class="views" id="vViews"></div></div>
+      </div>
+      <div class="tabs" id="tabs" role="tablist" aria-label="Pieces"></div>
+    </div>
+  </div>
+</section>
+
+<!-- SETS -->
+</div>
+<div class="view" id="v-shop" hidden>
+<section class="sets" id="setsSec">
+  <div class="wrap">
+    <div class="seg" role="tablist" aria-label="Shop"><a href="#shop" data-nav="shop">Sets</a><a href="#pieces" data-nav="pieces">Pieces</a></div>
+    <div class="sh rv"><div><div class="eyebrow">Sold by set</div><h2>Pick your set</h2>
+      <p>Every set starts with the tickler and ballpen. Tap a set to choose colours and, if you like, add the shirt in your size. Add as many as you like, in any edition: one for you, one for home.</p></div>
+      <div class="edmini" role="group" aria-label="Edition"></div></div>
+    <div class="swipe" style="display:none;font-size:12px;opacity:.7;margin:-14px 0 4px">Swipe to see all 4 sets and the shirt →</div>
+    <div class="setgrid" id="setGrid"></div>
+  </div>
+</section>
+
+<!-- SHIRT -->
+</div>
+<div class="view" id="v-bag" hidden>
+<section class="cosec" id="bagSec">
+  <div class="wrap">
+    <div class="sh rv"><div><div class="eyebrow">Checkout</div><h2>Your bag</h2>
+      <p>Pay the exact total by QR, then upload your payment screenshot. Finance checks every receipt and emails your confirmation.</p></div></div>
+    <div class="steps3" id="steps3"><span class="on" id="st1"><b>1</b>Bag</span><i></i><span id="st2"><b>2</b>Details</span><i></i><span id="st3"><b>3</b>Pay &amp; upload</span></div>
+    <div class="co">
+      <div class="panel">
+        <h3>Order summary</h3>
+        <div class="lines" id="lines"></div>
+        <div id="nudge"></div>
+        <div class="total"><span>Total to pay</span><b id="total">₱0</b></div>
+      </div>
+      <form class="panel" id="coForm" novalidate>
+        <div id="formBody">
+          <h3>Your details</h3>
+          <div id="formMsg"></div>
+          <div class="field"><label for="fName">Full name (Surname, First name M.I.)</label><input id="fName" autocomplete="name" placeholder="DELA CRUZ, JUAN M."></div>
+          <div class="two">
+            <div class="field"><label for="fClass">Class</label><select id="fClass"><option value="">Select</option><option>2027</option><option>2028</option><option>2029</option><option>2030</option></select></div>
+            <div class="field"><label for="fCoy">Company</label><input id="fCoy" placeholder="e.g. C" maxlength="12"></div>
+          </div>
+          <div class="field"><label for="fEmail">MAAP email</label><input id="fEmail" type="email" autocomplete="email" placeholder="juan.delacruz@maap.edu.ph"><span class="hint">Only @maap.edu.ph emails. Your confirmation goes here.</span></div>
+          <div class="field"><label for="fMobile">Mobile number</label><input id="fMobile" type="tel" inputmode="tel" autocomplete="tel" placeholder="09XX XXX XXXX"></div>
+          <h3 style="margin-top:10px">Payment</h3>
+          <div class="pay">
+            <img src="img/pay-qr.jpg" alt="InstaPay QR code for payment">
+            <div>
+              <div style="font-size:12.5px;color:var(--muted)">Pay exactly</div>
+              <div class="amt" id="payAmt">₱0</div>
+              <div style="font-size:12.5px;color:var(--muted);margin-top:6px">Scan with GCash, Maya or any bank app (InstaPay). Account <b>IS****L S.</b> Transfer fees, if any, are on the sender.</div>
+              <div style="font-size:12px;margin-top:6px"><b>Ordering on your phone?</b> Long-press the QR and save it, then in GCash tap <i>Scan → Upload QR</i> and pick the saved image.</div>
+            </div>
+          </div>
+          <div class="field"><label for="fRef">Reference number</label><input id="fRef" inputmode="numeric" placeholder="From your payment receipt"></div>
+          <div class="field"><label for="fReceipt">Payment screenshot</label>
+            <label class="drop" id="drop" for="fReceipt">Tap to upload your receipt (image or PDF, up to 5 MB)</label>
+            <input id="fReceipt" class="sr" type="file" accept="image/*,application/pdf"></div>
+          <label class="check"><input type="checkbox" id="fAgree"><span>I understand this pre-order is <b>optional</b>, that I paid the exact total above, and that orders are final once production starts.</span></label>
+          <button class="btn btn-accent" type="submit" id="submitBtn" style="width:100%">Place pre-order</button>
+          <p style="font-size:11.5px;color:var(--muted);margin:10px 0 0">Buying is entirely optional and not required of any midshipman. All proceeds go to the Class 2028 fund.</p>
+        </div>
+        <div id="doneBody" class="done" hidden></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- HOW -->
+</div>
+<div class="view" id="v-help" hidden>
+<section id="howSec">
+  <div class="wrap">
+    <div class="sh rv"><div><div class="eyebrow">How it works</div><h2>From your order to your bag home</h2></div></div>
+    <div class="swipe" style="display:none;font-size:12px;color:var(--muted);margin:-18px 0 8px">Swipe through the 4 steps →</div>
+    <div class="timeline" id="timeline"><div class="fillline" id="tlFill"></div>
+      <div class="tstep"><div class="dot">1</div><div class="d">Until 30 Nov</div><h3>Pre-order</h3><p>Pick your edition and set, pay by QR and upload your receipt. Your order number arrives by email.</p></div>
+      <div class="tstep"><div class="dot">2</div><div class="d">Within 48 hours</div><h3>Payment verified</h3><p>Finance checks your receipt and emails your confirmation. Track it any time below.</p></div>
+      <div class="tstep"><div class="dot">3</div><div class="d">After 30 Nov</div><h3>Production</h3><p>Orders are grouped by edition and sent to the printers, so every set is made for you.</p></div>
+      <div class="tstep"><div class="dot">4</div><div class="d">Before the break</div><h3>Release per company</h3><p>Packed per order and released per company, aimed before the 16 Dec break. Exact date to be announced.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRACK + FAQ -->
+<section style="padding-top:10px">
+  <div class="wrap tf">
+    <div class="panel rv" id="trackPanel">
+      <h3>Track your order</h3>
+      <div class="field"><label for="tId">Order number</label><input id="tId" placeholder="HB-0001"></div>
+      <div class="field"><label for="tEmail">MAAP email used</label><input id="tEmail" type="email" placeholder="you@maap.edu.ph"></div>
+      <button class="btn btn-dark" type="button" id="tBtn">Check status</button>
+      <div class="status" id="tOut" aria-live="polite"></div>
+    </div>
+    <div id="faqSec" class="rv">
+      <div class="eyebrow" style="margin-bottom:12px">Questions</div>
+      <details><summary>Do I have to buy?</summary><p>No. The merch is fully optional and not required of any member of the Midshipmen Fleet.</p></details>
+      <details><summary>Who can order?</summary><p>Midshipmen of Classes 2027 to 2030, using a MAAP email. The Academy Edition carries the MAAP crest instead of a class seal, so it suits Class 2030 and anyone who wants plain MAAP merch.</p></details>
+      <details><summary>Can I order for my family?</summary><p>Yes. Add as many sets as you like, in any edition. The Academy Edition makes a good pasalubong for parents and siblings.</p></details>
+      <details><summary>When do I get my items?</summary><p>Orders close 30 Nov. Release is aimed before the 16 Dec break, per company, against your order number. We will announce the exact date.</p></details>
+      <details><summary>How do I pay?</summary><p>Scan the QR with GCash, Maya or any bank app, pay the exact total, then upload the screenshot and type the reference number. Orders without a matching payment are not produced.</p></details>
+      <details><summary>Are the photos the real items?</summary><p>They are mock-ups made for this sale. Final items follow the same layout; shades can vary slightly between printers. Pen colours depend on supplier stock.</p></details>
+      <details><summary>Can I change or cancel?</summary><p>Message the Logistics committee before 30 Nov with your order number. After production starts, orders are final.</p></details>
+      <details><summary>Where does the money go?</summary><p>To the Class 2028 class fund, for approved class activities. A financial report is submitted to the DMA after distribution.</p></details>
+    </div>
+  </div>
+</section>
+</div>
+</main>
+<nav class="dock" aria-label="Pages"><a href="#home" data-nav="home"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Home</a><a href="#shop" data-nav="shop"><svg viewBox="0 0 24 24"><path d="M4 7h16l-1.5 12.5a1 1 0 0 1-1 .9h-11a1 1 0 0 1-1-.9zM8 7a4 4 0 0 1 8 0"/></svg>Sets</a><a href="#pieces" data-nav="pieces"><svg viewBox="0 0 24 24"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"/></svg>Pieces</a><a href="#bag" data-nav="bag" class="dbag"><svg viewBox="0 0 24 24"><path d="M6 8h12l1 12H5zM9 8V6a3 3 0 0 1 6 0v2"/></svg>Bag<i id="dockCount">0</i></a><a href="#help" data-nav="help"><svg viewBox="0 0 24 24"><path d="M12 21a9 9 0 1 1 0-18 9 9 0 0 1 0 18zM9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6V14M12 17h.01"/></svg>Help</a></nav>
+
+<footer>
+  <div class="wrap">
+    <div><b>HOMEBOUND</b><br>Fund Raising thru MAAP Merchandise · HERZIVANEANS Class of 2028<br>Maritime Academy of Asia and the Pacific, Kamaya Point, Mariveles, Bataan</div>
+    <div>Design &amp; Logistics: MIDN 2CL SILAO, ISRAFIL M.<br>Finance: MIDN 2CL NALUZ, IAN GABRIEL<br>Purchase is optional.</div>
+  </div>
+</footer>
+
+<!-- set configurator -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+  <div class="sheet">
+    <div class="pv" id="pv"><div class="pvtabs" id="pvTabs"></div></div>
+    <div class="cfg">
+      <div class="hd"><div><div class="eyebrow" id="mEd"></div><h3 id="mTitle">Set</h3></div><button class="x" type="button" id="mClose" aria-label="Close">×</button></div>
+      <div style="font-size:12.5px;color:var(--muted)" id="mItems"></div>
+      <div class="opt"><span>EDITION</span><div class="chips" id="oEd"></div></div>
+      <div class="opt" id="optCover"><span>NOTEBOOK &amp; TICKLER COVER</span><div class="chips" id="oCover"></div></div>
+      <div class="opt" id="optPen"><span>BALLPEN COLOUR <small style="font-weight:500;color:var(--muted);letter-spacing:0">(subject to supplier stock)</small></span><div class="chips" id="oPen"></div></div>
+      <div class="opt" id="optPin"><span>BUTTON PIN</span><div class="chips" id="oPin"></div></div>
+      <div class="opt" id="optShirt"><span id="shirtLbl">ADD THE SHIRT</span><div class="chips" id="oShirt"></div></div>
+      <div class="opt"><span>QUANTITY</span><div class="stepper"><button type="button" id="mMinus" aria-label="Less">−</button><b id="mQty">1</b><button type="button" id="mPlus" aria-label="More">+</button></div></div>
+      <div class="foot"><b id="mPrice">₱0</b><button class="btn btn-accent" type="button" id="mAdd">Add to bag</button></div>
+    </div>
+  </div>
+</div>
+<canvas id="confetti" aria-hidden="true"></canvas>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+/* ================= CONFIG: edit these ================= */
+const CONFIG = {
+  API_URL: "https://script.google.com/macros/s/AKfycbwENIjnmKrj6E4Yyh_4kak4JsO4ivNh-vXawar7Fav8b4GJmnJbY0S5_TyHYjao-S3d/exec",                       // Apps Script web app URL (ends in /exec). Empty = preview mode.
+  DEADLINE: "2026-11-30T23:59:00+08:00",
+  SUPPLIER_MIN: 100,
+  EMAIL_DOMAIN: "maap.edu.ph",
+  SHIRT_PRICE: 370,
+  MAX_QTY: 10
+};
+/* ====================================================== */
+
+const ED = {
+  mp:{year:"Academy Edition", name:"MAAP", motto:"virtus · fides · et disciplina", theme:"#0a1636"},
+  xp:{year:"Class 2027", name:"XEPRAZEAS", motto:"sapientia · prudentia · fortis", theme:"#1f0e13"},
+  hz:{year:"Class 2028", name:"HERZIVANEANS", motto:"resiliere · prudentia · ardor", theme:"#1b1016"},
+  cz:{year:"Class 2029", name:"CZERVAREONS", motto:"animus · inexorabilis · consociatus", theme:"#0b2125"},
+};
+const ITEMS = {
+  mug:{name:"Mug", desc:"White ceramic, wrap print in Academy blue", views:[["Front","mug"]]},
+  tumbler:{name:"Tumbler", desc:"500 ml white stainless, full wrap", views:[["Front","tumbler"]]},
+  tickler:{name:"Tickler", desc:"A6 hardcover with elastic band", views:[["Navy & gold","tickler_navy"],["Ivory & navy","tickler_ivory"]]},
+  notebook:{name:"Notebook", desc:"A5 hardcover, ruled pages", views:[["Navy & gold","notebook_navy"],["Ivory & navy","notebook_ivory"]]},
+  tote:{name:"Tote bag", desc:"Khaki canvas, 12 x 14 in, printed both sides", views:[["Seal side","tote"],["Name side","tote_a"]]},
+  pen:{name:"Ballpen", desc:"Blue, white or beige with your class name", views:[["All colours","pen"]]},
+  pin:{name:"Button pin", desc:"2.25 in, classic or outline", views:[["Classic","pin_classic"],["Outline","pin_outline"]]}
+};
+const SETS = [
+  {id:1, name:"Tickler Set", price:120, items:["tickler","pen"], note:"The essentials"},
+  {id:2, name:"Mess Set", price:220, items:["tickler","pen","pin","mug"], note:"For your morning coffee"},
+  {id:3, name:"Deck Set", price:520, items:["tickler","pen","notebook","tote","tumbler"], note:"Everyday carry"},
+  {id:4, name:"Full Fleet Set", price:610, items:["tickler","pen","pin","mug","notebook","tote","tumbler"], note:"All seven pieces", feature:true}
+];
+const THUMB = {mug:"mug",tumbler:"tumbler",tickler:"tickler_navy",notebook:"notebook_navy",tote:"tote",pen:"pen",pin:"pin_classic"};
+const COVERS = {navy:{label:"Navy & gold", sw:"#18264e"}, ivory:{label:"Ivory & navy", sw:"#eee7d6"}};
+const PENS = {blue:{label:"Blue", sw:"#1b2f6e"}, white:{label:"White", sw:"#ffffff"}, beige:{label:"Beige", sw:"#d9c7a0"}};
+const PINS = {classic:{label:"Classic"}, outline:{label:"Outline"}};
+const SIZES = ["XS","S","M","L","XL","2XL","3XL","5XL"];
+
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const peso = n => "₱" + Math.round(n).toLocaleString("en-PH");
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const pic = (ed,k) => `img/${ed}/${k}.jpg`;
+const edLabel = ed => ED[ed].year + (ed==="mp" ? "" : " · " + ED[ed].name);
+let edition = "mp", bag = [];
+try { bag = JSON.parse(localStorage.getItem("hb_bag")||"[]"); if(!Array.isArray(bag)) bag=[]; } catch(e){ bag=[]; }
+/* Always open on the Academy Edition; buyers switch to their class from there. */
+const save = () => { try{ localStorage.setItem("hb_bag",JSON.stringify(bag)); localStorage.setItem("hb_ed",edition);}catch(e){} };
+function toast(t){ const el=$("#toast"); el.innerHTML=t; el.classList.add("show"); clearTimeout(toast.t); toast.t=setTimeout(()=>el.classList.remove("show"),3200); }
+function countTo(el, to){ const from = Number(el.dataset.v||0); el.dataset.v = to; if (reduce){ el.textContent=peso(to); return; }
+  const t0=performance.now(); const step=t=>{ const k=Math.min(1,(t-t0)/450); el.textContent=peso(from+(to-from)*(1-Math.pow(1-k,3))); if(k<1) requestAnimationFrame(step); }; requestAnimationFrame(step); }
+
+/* ---------- edition (re-themes the page) ---------- */
+let flip = 0;
+function renderMini(){ $$(".edmini").forEach(m=>m.innerHTML=Object.entries(ED).map(([k,v])=>`<button type="button" data-ed="${k}" aria-pressed="${k===edition}" title="${edLabel(k)}"><img src="img/${k}/seal_color.webp" alt="${edLabel(k)}"><span>${k==="mp"?"ACADEMY":v.year.replace("Class ","")}</span></button>`).join("")); }
+document.addEventListener("click",e=>{ const b=e.target.closest(".edmini [data-ed]"); if(b) setEdition(b.dataset.ed); });
+function renderEdPick(){
+  $("#edPick").innerHTML = Object.entries(ED).map(([k,v]) =>
+    `<button type="button" class="edt" data-ed="${k}" aria-pressed="${k===edition}"><img src="img/${k}/seal_color.webp" alt=""><span><b>${k==="mp"?"ACADEMY":v.name}</b><span>${k==="mp"?"MAAP crest · all":v.year}</span></span></button>`).join("");
+}
+function setEdition(ed, first){
+  const changed = ed!==edition; edition = ed; save();
+  document.documentElement.dataset.ed = ed;
+  document.querySelector('meta[name="theme-color"]').content = ED[ed].theme;
+  renderEdPick(); renderMini();
+  // flip the seal like a coin
+  const face = (flip % 2 === 0) ? "#sealB" : "#sealA";
+  if (first){ $("#sealA").src = `img/${ed}/seal_color.webp`; }
+  else if (changed){ $(face).src = `img/${ed}/seal_color.webp`; flip++; $("#seal3d").style.transform = `rotateY(${flip*180}deg)`; }
+  $("#brandSeal").src = `img/${ed}/seal_color.webp`;
+  $("#fl1").src = pic(ed,"mug"); $("#fl2").src = pic(ed,"pin_classic"); $("#fl3").src = pic(ed,"notebook_navy");
+  $("#heroEdName").textContent = ed==="mp" ? "the MAAP crest" : `the ${ED[ed].name} seal`;
+  $$(".edName").forEach(e=>e.textContent = edLabel(ed));
+  $$(".edIcon").forEach(e=>e.src = `img/${ed}/seal_color.webp`);
+  $$(".edMotto").forEach(e=>e.textContent = ED[ed].motto);
+  $("#mq").innerHTML = Array(2).fill(Object.entries(ED).map(([k,v])=>`<span>${k==="mp"?"MAAP":v.name}</span><em>${v.motto}</em>`).join("")+"<span>KAMAYA POINT · MARIVELES · BATAAN</span>").join("");
+  renderViewer(true); renderSets();
+}
+$("#edPick").addEventListener("click", e => { const b=e.target.closest("[data-ed]"); if(b) setEdition(b.dataset.ed); });
+
+/* ---------- hero sea canvas ---------- */
+(function sea(){
+  const c=$("#sea"), x=c.getContext("2d"); let w,h,dpr,t=0;
+  const stars = Array.from({length:70},()=>({x:Math.random(),y:Math.random()*.55,r:Math.random()*1.4+.3,p:Math.random()*6}));
+  const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  function size(){ dpr=Math.min(2,devicePixelRatio||1); w=c.clientWidth; h=c.clientHeight; c.width=w*dpr; c.height=h*dpr; x.setTransform(dpr,0,0,dpr,0,0); }
+  function draw(){
+    x.clearRect(0,0,w,h);
+    const acc=css("--accent"), acc2=css("--accent2");
+    stars.forEach(s=>{ x.globalAlpha=.25+.35*Math.sin(t*.8+s.p)**2; x.fillStyle="#fff"; x.beginPath(); x.arc(s.x*w,s.y*h,s.r,0,7); x.fill(); });
+    for(let i=0;i<4;i++){
+      const base=h*(.72+i*.07), amp=8+i*5, k=.006-i*.0008, sp=.6+i*.25;
+      x.globalAlpha=.10+i*.06; x.strokeStyle = i%2? acc : acc2; x.lineWidth=1.4;
+      x.beginPath();
+      for(let px=0;px<=w;px+=8){ const y=base+Math.sin(px*k+t*sp+i)*amp+Math.sin(px*k*2.3-t*sp*.7)*amp*.4; px?x.lineTo(px,y):x.moveTo(px,y); }
+      x.stroke();
+    }
+    x.globalAlpha=1;
+    t+=.016; if(!reduce) requestAnimationFrame(draw);
+  }
+  size(); addEventListener("resize",size); draw();
+})();
+
+/* ---------- 3D tilt ---------- */
+function tilt(el, target, max=12){
+  if (reduce) return;
+  el.addEventListener("pointermove", e=>{ const r=el.getBoundingClientRect(); const px=(e.clientX-r.left)/r.width-.5, py=(e.clientY-r.top)/r.height-.5;
+    target.style.transform=`rotateY(${px*max}deg) rotateX(${-py*max}deg)`; el.style.setProperty("--gx",(px+.5)*100+"%"); el.style.setProperty("--gy",(py+.5)*100+"%"); });
+  el.addEventListener("pointerleave", ()=>{ target.style.transform=""; });
+}
+tilt($("#stage"), $("#tilt"), 18);
+
+/* ---------- explorer ---------- */
+let cur = "mug", view = 0, auto = !reduce, autoT;
+function renderTabs(){
+  $("#tabs").innerHTML = Object.entries(ITEMS).map(([k,it],i)=>`<button type="button" role="tab" class="tab" data-k="${k}" aria-selected="${k===cur}">
+    <span class="n">0${i+1}</span><img src="${pic(edition,THUMB[k])}" alt=""><span><b>${it.name.toUpperCase()}</b><span>${it.desc}</span></span><span class="bar"><i class="${auto&&k===cur?"run":""}"></i></span></button>`).join("");
+}
+function renderViewer(full){
+  const it = ITEMS[cur];
+  if (view >= it.views.length) view = 0;
+  $("#vImgs").innerHTML = it.views.map((v,i)=>`<img src="${pic(edition,v[1])}" alt="${it.name}, ${v[0]}, ${edLabel(edition)}" class="${i===view?"on":""}">`).join("");
+  $("#vName").textContent = it.name; $("#vDesc").textContent = it.desc + " · in " + SETS.filter(s=>s.items.includes(cur)).map(s=>s.name).join(", ");
+  $("#vViews").innerHTML = it.views.length>1 ? it.views.map((v,i)=>`<button type="button" data-v="${i}" aria-pressed="${i===view}">${v[0]}</button>`).join("") : "";
+  $("#vViews").style.display = it.views.length>1 ? "" : "none";
+  if (full) renderTabs();
+}
+function pick(k){ cur=k; view=0; renderViewer(true); }
+$("#tabs").addEventListener("click", e=>{ const b=e.target.closest("[data-k]"); if(!b) return; auto=false; clearInterval(autoT); pick(b.dataset.k); });
+$("#vViews").addEventListener("click", e=>{ const b=e.target.closest("[data-v]"); if(!b) return; auto=false; clearInterval(autoT); view=+b.dataset.v;
+  $$("#vImgs img").forEach((im,i)=>im.classList.toggle("on",i===view)); $$("#vViews button").forEach((x,i)=>x.setAttribute("aria-pressed",i===view)); renderTabs(); });
+tilt($("#viewer"), $("#vImgs"), 8);
+function startAuto(){ if(!auto) return; autoT=setInterval(()=>{ if(!auto) return clearInterval(autoT); const ks=Object.keys(ITEMS); pick(ks[(ks.indexOf(cur)+1)%ks.length]); },6000); }
+
+/* ---------- sets ---------- */
+function fanPos(n,i,spread){ const mid=(n-1)/2, d=i-mid; return `translate(calc(-50% + ${d*(spread)}px), calc(-50% + ${Math.abs(d)*6}px)) rotate(${d*7}deg)`; }
+function renderSets(){
+  $("#setGrid").innerHTML = SETS.map(s=>`
+    <div class="setc rv ${s.feature?"feature":""}" data-set="${s.id}">${s.feature?'<span class="badge">Complete collection</span>':""}
+      <div class="setin">
+        <div><div class="count">${s.items.length} pieces · ${s.note}</div><h3>${s.name}</h3></div>
+        <div class="fan">${s.items.map((k,i)=>`<img src="${pic(edition,THUMB[k])}" alt="" data-i="${i}" style="transform:${fanPos(s.items.length,i,Math.min(26,120/s.items.length))};z-index:${10-Math.abs(i-(s.items.length-1)/2)|0}">`).join("")}</div>
+        <ul>${s.items.map(k=>`<li>${ITEMS[k].name}</li>`).join("")}</ul>
+        <div class="price">${peso(s.price)}<small>${s.items.length} items · about ${peso(s.price/s.items.length)} each</small></div>
+        <button class="btn btn-accent" type="button" data-open="${s.id}">Customize</button>
+      </div></div>`).join("") + `
+    <div class="setc rv shirtc" data-set="shirt"><span class="badge" style="background:#fff">Optional add-on</span>
+      <div class="setin">
+        <div><div class="count">Wear it home · any set or on its own</div><h3>The Shirt</h3></div>
+        <div class="fan"><img src="${pic(edition,"shirt_back")}" alt="" style="transform:${fanPos(2,0,26)};z-index:9"><img src="${pic(edition,"shirt")}" alt="" style="transform:${fanPos(2,1,26)};z-index:10"></div>
+        <ul><li>Seal on chest</li><li>Name across back</li><li>Motto on sleeve</li><li>XS to 5XL</li></ul>
+        <div class="price">${peso(CONFIG.SHIRT_PRICE)}<small>White crew-neck · add one to any set</small></div>
+        <button class="btn btn-accent" type="button" data-shirt="1">Choose size</button>
+      </div></div>`;
+  $$("#setGrid .setc").forEach(card=>{
+    const imgs=[...card.querySelectorAll(".fan img")], n=imgs.length;
+    card.addEventListener("pointerenter",()=>imgs.forEach((im,i)=>im.style.transform=fanPos(n,i,Math.min(44,190/n)).replace(/rotate\([^)]*\)/,`rotate(${(i-(n-1)/2)*11}deg)`)));
+    card.addEventListener("pointerleave",()=>{ imgs.forEach((im,i)=>im.style.transform=fanPos(n,i,Math.min(26,120/n))); card.style.transform=""; });
+    if(!reduce) card.addEventListener("pointermove",e=>{ const r=card.getBoundingClientRect(); const px=(e.clientX-r.left)/r.width-.5, py=(e.clientY-r.top)/r.height-.5; card.style.transform=`perspective(900px) rotateY(${px*8}deg) rotateX(${-py*8}deg)`; });
+  });
+  observe();
+}
+$("#setGrid").addEventListener("click", e=>{ const b=e.target.closest("[data-open]"); if(b) openSet(+b.dataset.open, b); const t=e.target.closest("[data-shirt]"); if(t) openShirt(t); });
+document.addEventListener("click", e=>{ const a=e.target.closest("[data-openshirt]"); if(!a) return; setTimeout(()=>openShirt(a),350); });
+
+/* ---------- configurator ---------- */
+let draft=null, pvView=0;
+function chips(el,map,val,key){ el.innerHTML=Object.entries(map).map(([k,v])=>`<button type="button" data-k="${k}" aria-pressed="${k===val}">${v.sw?`<i class="sw" style="background:${v.sw}"></i>`:""}${v.label}</button>`).join("");
+  el.onclick=e=>{ const b=e.target.closest("[data-k]"); if(!b) return; draft[key]= (key==="shirt" && b.dataset.k==="none") ? null : b.dataset.k; if(key==="shirt" && draft.kind==="set") pvView = draft.shirt ? pvList().length-1 : 0; if(key==="cover") pvView=Math.max(0,pvList().findIndex(p=>p[0].startsWith("Cover"))); if(key==="pin") pvView=pvList().findIndex(p=>p[0]==="Pin"); renderDraft(); }; }
+function pvList(){
+  const e=draft.edition, L=[];
+  if (draft.kind==="shirt") return [["Front",pic(e,"shirt")],["Back",pic(e,"shirt_back")]];
+  const s=SETS.find(x=>x.id===draft.set);
+  L.push(["Cover", pic(e,`${s.items.includes("notebook")?"notebook":"tickler"}_${draft.cover}`)]);
+  if (s.items.includes("notebook")) L.push(["Tickler", pic(e,`tickler_${draft.cover}`)]);
+  if (draft.pin) L.push(["Pin", pic(e,`pin_${draft.pin}`)]);
+  if (s.items.includes("mug")) L.push(["Mug", pic(e,"mug")]);
+  if (s.items.includes("tumbler")) L.push(["Tumbler", pic(e,"tumbler")]);
+  if (s.items.includes("tote")) L.push(["Tote", pic(e,"tote")]);
+  L.push(["Pens", pic(e,"pen")]);
+  if (draft.shirt) L.push(["Shirt", pic(e,"shirt")]);
+  return L;
+}
+let opener=null;
+function openSet(id, btn){ opener=btn; const s=SETS.find(x=>x.id===id);
+  draft={kind:"set", set:id, edition, cover:"navy", pen:"blue", pin:s.items.includes("pin")?"classic":null, shirt:null, qty:1}; pvView=0;
+  $("#mPrice").dataset.v=s.price; renderDraft(); $("#modal").classList.add("open"); $("#mClose").focus(); }
+function openShirt(btn){ opener=btn||null;
+  draft={kind:"shirt", edition, shirt:"M", qty:1}; pvView=0;
+  $("#mPrice").dataset.v=CONFIG.SHIRT_PRICE; renderDraft(); $("#modal").classList.add("open"); $("#mClose").focus(); }
+const draftPrice=()=> draft.kind==="shirt" ? CONFIG.SHIRT_PRICE*draft.qty : (SETS.find(x=>x.id===draft.set).price + (draft.shirt?CONFIG.SHIRT_PRICE:0))*draft.qty;
+function renderDraft(){
+  const isShirt=draft.kind==="shirt", s=isShirt?null:SETS.find(x=>x.id===draft.set), L=pvList();
+  if (pvView<0||pvView>=L.length) pvView=0;
+  $("#mTitle").textContent= isShirt ? "HOMEBOUND Shirt" : s.name;
+  $("#mEd").textContent=edLabel(draft.edition);
+  $("#mItems").textContent= isShirt ? "White crew-neck · seal on the left chest, class name across the shoulders, motto on the sleeve" : s.items.map(k=>ITEMS[k].name).join(" · ") + (draft.shirt ? ` · Shirt (${draft.shirt})` : "");
+  chips($("#oEd"), Object.fromEntries(Object.entries(ED).map(([k,v])=>[k,{label:k==="mp"?"Academy":v.year.replace("Class ","")}])), draft.edition, "edition");
+  $("#optCover").hidden=$("#optPen").hidden=isShirt;
+  if(!isShirt){ chips($("#oCover"),COVERS,draft.cover,"cover"); chips($("#oPen"),PENS,draft.pen,"pen"); }
+  $("#optPin").hidden=isShirt||!draft.pin; if(!isShirt&&draft.pin) chips($("#oPin"),PINS,draft.pin,"pin");
+  $("#shirtLbl").innerHTML = isShirt ? "SIZE" : `ADD THE SHIRT <small style="font-weight:500;color:var(--muted);letter-spacing:0">(optional · +${peso(CONFIG.SHIRT_PRICE)} each)</small>`;
+  const sizeMap = Object.fromEntries((isShirt?[]:[["none",{label:"No shirt"}]]).concat(SIZES.map(z=>[z,{label:z}])));
+  chips($("#oShirt"), sizeMap, draft.shirt||"none", "shirt");
+  const pv=$("#pv"); const old=[...pv.querySelectorAll("img")];
+  const im=new Image(); im.src=L[pvView][1]; im.alt=`${$("#mTitle").textContent} preview: ${L[pvView][0]}`; pv.insertBefore(im,$("#pvTabs"));
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{ im.classList.add("on"); old.forEach(o=>{o.classList.remove("on"); setTimeout(()=>o.remove(),500);}); }));
+  $("#pvTabs").innerHTML=L.map((p,i)=>`<button type="button" data-p="${i}" aria-pressed="${i===pvView}">${p[0]}</button>`).join("");
+  $("#mQty").textContent=draft.qty; countTo($("#mPrice"), draftPrice());
+  $("#mAdd").textContent = isShirt ? "Add shirt to bag" : (draft.shirt ? "Add set + shirt" : "Add to bag");
+}
+$("#pvTabs").addEventListener("click",e=>{ const b=e.target.closest("[data-p]"); if(b){ pvView=+b.dataset.p; renderDraft(); } });
+function closeModal(){ $("#modal").classList.remove("open"); draft=null; if(opener) opener.focus(); }
+$("#mClose").onclick=closeModal;
+$("#modal").addEventListener("click",e=>{ if(e.target.id==="modal") closeModal(); });
+document.addEventListener("keydown",e=>{ if(e.key==="Escape"&&draft) closeModal(); });
+$("#mMinus").onclick=()=>{ draft.qty=Math.max(1,draft.qty-1); renderDraft(); };
+$("#mPlus").onclick=()=>{ draft.qty=Math.min(CONFIG.MAX_QTY,draft.qty+1); renderDraft(); };
+function addShirtLine(ed,size,qty){ const ex=bag.find(l=>l.type==="shirt"&&l.size===size&&l.edition===ed); if(ex) ex.qty=Math.min(CONFIG.MAX_QTY,ex.qty+qty); else bag.push({type:"shirt",edition:ed,size,qty}); }
+$("#mAdd").onclick=()=>{ const src=$("#pv img.on")||$("#pv img"); fly(src);
+  if(draft.kind==="shirt") addShirtLine(draft.edition,draft.shirt,draft.qty);
+  else { const {kind,shirt,...line}=draft; bag.push({type:"set",...line}); if(shirt) addShirtLine(draft.edition,shirt,draft.qty); }
+  save(); renderBag(); closeModal(); toast(`Added to your bag · <a href="#bag" style="color:var(--accent)">Checkout →</a>`); };
+
+function fly(fromEl){
+  const target=$("#bagTop"); if(!fromEl||reduce){ bump(); return; }
+  const r=fromEl.getBoundingClientRect(), t=target.getBoundingClientRect();
+  const f=document.createElement("img"); f.src=fromEl.src; f.className="flyer";
+  f.style.left=(r.left+r.width/2-35)+"px"; f.style.top=(r.top+r.height/2-35)+"px"; document.body.appendChild(f);
+  requestAnimationFrame(()=>{ f.style.transform=`translate(${t.left+t.width/2-(r.left+r.width/2)}px,${t.top+t.height/2-(r.top+r.height/2)}px) scale(.2) rotate(20deg)`; f.style.opacity=".3"; });
+  setTimeout(()=>{ f.remove(); bump(); },760);
+}
+function bump(){ const b=$("#bagTop"); b.classList.remove("bump"); void b.offsetWidth; b.classList.add("bump"); }
+
+/* ---------- bag ---------- */
+function lineInfo(l){
+  if (l.type==="shirt") return {title:`Shirt · ${l.size}`, meta:edLabel(l.edition), price:CONFIG.SHIRT_PRICE, img:pic(l.edition,"shirt")};
+  const s=SETS.find(x=>x.id===l.set), bits=[edLabel(l.edition), COVERS[l.cover].label+" cover", PENS[l.pen].label+" pen"];
+  if (l.pin) bits.push(PINS[l.pin].label+" pin");
+  return {title:s.name, meta:bits.join(" · "), price:s.price, img:pic(l.edition, s.items.includes("notebook")?`notebook_${l.cover}`:`tickler_${l.cover}`)};
+}
+const bagTotal=()=>bag.reduce((t,l)=>t+lineInfo(l).price*l.qty,0);
+function renderBag(){
+  $("#bagCount").textContent=$("#dockCount").textContent=bag.reduce((t,l)=>t+l.qty,0);
+  $("#lines").innerHTML = bag.length ? bag.map((l,i)=>{ const f=lineInfo(l); return `<div class="line"><img src="${f.img}" alt="">
+    <div><b>${f.title}</b><div class="meta">${f.meta}</div><div class="qty"><button type="button" data-q="${i}" data-d="-1" aria-label="Less">−</button><span>${l.qty}</span><button type="button" data-q="${i}" data-d="1" aria-label="More">+</button><button type="button" class="rm" data-rm="${i}">Remove</button></div></div>
+    <div class="r">${peso(f.price*l.qty)}</div></div>`; }).join("") : `<div class="empty">Your bag is empty.<br><a href="#shop" style="color:var(--ink);font-weight:700">Build a set</a> to start.</div>`;
+  const hasShirt=bag.some(l=>l.type==="shirt"), hasSet=bag.some(l=>l.type==="set");
+  $("#nudge").innerHTML = hasSet && !hasShirt ? `<div class="nudge"><img src="${pic(edition,"shirt")}" alt=""><span>Complete the look with the shirt for ${peso(CONFIG.SHIRT_PRICE)}.</span><a class="btn btn-dark" style="padding:8px 14px;margin-left:auto;font-size:12px" href="#shop" data-openshirt="1">Add</a></div>` : "";
+  countTo($("#total"),bagTotal()); countTo($("#payAmt"),bagTotal());
+  $("#st1").classList.toggle("on",true); $("#st2").classList.toggle("on",bag.length>0);
+}
+$("#lines").addEventListener("click",e=>{ const q=e.target.closest("[data-q]"), r=e.target.closest("[data-rm]");
+  if(q){ const l=bag[+q.dataset.q]; l.qty=Math.min(CONFIG.MAX_QTY,Math.max(1,l.qty+(+q.dataset.d))); } else if(r){ bag.splice(+r.dataset.rm,1); } else return; save(); renderBag(); });
+$("#bagTop").onclick=()=>{ location.hash="#bag"; };
+
+/* ---------- countdown + voyage ---------- */
+function tick(){ const ms=new Date(CONFIG.DEADLINE)-new Date(); const z=n=>String(Math.max(0,n)).padStart(2,"0");
+  if(ms<=0){ ["cD","cH","cM","cS"].forEach(i=>$("#"+i).textContent="00"); return; }
+  $("#cD").textContent=z(Math.floor(ms/864e5)); $("#cH").textContent=z(Math.floor(ms/36e5)%24); $("#cM").textContent=z(Math.floor(ms/6e4)%60); $("#cS").textContent=z(Math.floor(ms/1e3)%60); }
+setInterval(tick,1000); tick();
+function voyage(n){ const pct=Math.min(100,n/CONFIG.SUPPLIER_MIN*100);
+  $("#ropeFill").style.width=pct+"%"; $("#ship").style.left=Math.max(3,pct)+"%";
+  $("#ropeText").textContent = n>=CONFIG.SUPPLIER_MIN ? `${n} sets reserved. We're sailing: production is on!` : `${n} of ${CONFIG.SUPPLIER_MIN} sets reserved. Help us reach port and start production.`; }
+async function loadStats(){
+  if(!CONFIG.API_URL){ voyage(0); return; }
+  try{ const r=await fetch(CONFIG.API_URL+"?action=stats"), j=await r.json(); if(j.ok){ voyage(j.sets||0); if(j.open===false) closeOrders(j.message); } }
+  catch(e){ $("#ropeText").textContent="Sets reserved: unavailable right now"; }
+}
+function closeOrders(msg){ $("#submitBtn").disabled=true; $("#formMsg").innerHTML=`<div class="msg err">${msg||"Pre-orders are closed."}</div>`; }
+
+/* ---------- receipt ---------- */
+let receipt=null;
+$("#fReceipt").addEventListener("change", async e=>{ const f=e.target.files[0], d=$("#drop"); receipt=null; d.classList.remove("has"); d.textContent="Tap to upload your receipt (image or PDF, up to 5 MB)"; $("#st3").classList.remove("on");
+  if(!f) return; if(f.size>5*1024*1024){ d.textContent="That file is over 5 MB. Upload a screenshot instead."; return; }
+  try{ receipt = f.type.startsWith("image/") ? await shrink(f) : {name:f.name,mime:f.type,data:await toB64(f)}; d.classList.add("has"); d.textContent="✓ "+f.name; $("#st3").classList.add("on"); }
+  catch(err){ d.textContent="Could not read that file. Try another screenshot."; } });
+const toB64=f=>new Promise((res,rej)=>{ const r=new FileReader(); r.onload=()=>res(String(r.result).split(",")[1]); r.onerror=rej; r.readAsDataURL(f); });
+function shrink(f){ return new Promise((res,rej)=>{ const u=URL.createObjectURL(f), im=new Image(); im.onload=()=>{ const k=Math.min(1,1600/Math.max(im.width,im.height)), c=document.createElement("canvas"); c.width=Math.round(im.width*k); c.height=Math.round(im.height*k); c.getContext("2d").drawImage(im,0,0,c.width,c.height); URL.revokeObjectURL(u); res({name:f.name.replace(/\.[^.]+$/,"")+".jpg",mime:"image/jpeg",data:c.toDataURL("image/jpeg",.85).split(",")[1]}); }; im.onerror=rej; im.src=u; }); }
+
+/* ---------- submit ---------- */
+function fail(msg,el){ $("#formMsg").innerHTML=`<div class="msg err">${msg}</div>`; if(el) el.focus(); $("#formMsg").scrollIntoView({block:"center",behavior:reduce?"auto":"smooth"}); }
+$("#coForm").addEventListener("submit", async e=>{
+  e.preventDefault(); const v=id=>$(id).value.trim();
+  if(!bag.length) return fail("Your bag is empty. Build a set first.");
+  if(!v("#fName")) return fail("Enter your full name.",$("#fName"));
+  if(!v("#fClass")) return fail("Select your class.",$("#fClass"));
+  if(!v("#fCoy")) return fail("Enter your company.",$("#fCoy"));
+  const email=v("#fEmail").toLowerCase();
+  if(!new RegExp("^[^@\\s]+@"+CONFIG.EMAIL_DOMAIN.replace(/\./g,"\\.")+"$").test(email)) return fail(`Use your @${CONFIG.EMAIL_DOMAIN} email.`,$("#fEmail"));
+  if(!/^(\+?63|0)9\d{9}$/.test(v("#fMobile").replace(/[\s-]/g,""))) return fail("Enter a valid mobile number, e.g. 0917 123 4567.",$("#fMobile"));
+  if(v("#fRef").length<6) return fail("Enter the reference number from your payment.",$("#fRef"));
+  if(!receipt) return fail("Upload your payment screenshot.",$("#fReceipt"));
+  if(!$("#fAgree").checked) return fail("Tick the box to confirm.",$("#fAgree"));
+  const order={name:v("#fName"),classYear:v("#fClass"),company:v("#fCoy").toUpperCase(),email,mobile:v("#fMobile"),ref:v("#fRef"),total:bagTotal(),lines:bag.map(l=>({...l})),receipt};
+  const btn=$("#submitBtn"); btn.disabled=true; btn.textContent="Sending…"; $("#formMsg").innerHTML="";
+  try{
+    let res;
+    if(!CONFIG.API_URL){ await new Promise(r=>setTimeout(r,900)); res={ok:true,orderId:"HB-DEMO",total:order.total}; }
+    else { const r=await fetch(CONFIG.API_URL,{method:"POST",body:JSON.stringify(order)}); res=await r.json(); }
+    if(!res.ok) throw new Error(res.error||"Something went wrong.");
+    $("#formBody").hidden=true; $("#doneBody").hidden=false;
+    $("#doneBody").innerHTML=`<div class="eyebrow" style="color:var(--ok)">Pre-order received</div><div class="oid">${res.orderId}</div>
+      <p style="color:var(--muted);font-size:13.5px;margin:0 0 14px">Total ${peso(res.total)} · Screenshot this page. A copy was sent to <b>${email}</b>.<br>Finance will verify your payment and email you within 48 hours.</p>
+      <a class="btn btn-dark" href="#help">Track this order</a>`;
+    $("#tId").value=res.orderId; $("#tEmail").value=email; bag=[]; save(); renderBag(); loadStats(); confetti();
+  }catch(err){ fail(err.message+" Your bag is still saved; try again."); }
+  finally{ btn.disabled=false; btn.textContent="Place pre-order"; }
+});
+
+/* ---------- confetti ---------- */
+function confetti(){
+  if(reduce) return; const c=$("#confetti"), x=c.getContext("2d"); c.width=innerWidth; c.height=innerHeight;
+  const cs=getComputedStyle(document.documentElement), cols=[cs.getPropertyValue("--accent"),cs.getPropertyValue("--accent2"),"#ffffff",cs.getPropertyValue("--deep2")];
+  const P=Array.from({length:160},()=>({x:innerWidth/2,y:innerHeight*.45,vx:(Math.random()-.5)*16,vy:-Math.random()*16-4,r:Math.random()*6+3,c:cols[Math.random()*4|0],a:Math.random()*6,s:(Math.random()-.5)*.3}));
+  let f=0; (function run(){ x.clearRect(0,0,c.width,c.height); P.forEach(p=>{ p.vy+=.45; p.vx*=.99; p.x+=p.vx; p.y+=p.vy; p.a+=p.s; x.save(); x.translate(p.x,p.y); x.rotate(p.a); x.fillStyle=p.c; x.fillRect(-p.r/2,-p.r/4,p.r,p.r/2); x.restore(); });
+    if(++f<170) requestAnimationFrame(run); else x.clearRect(0,0,c.width,c.height); })();
+}
+
+/* ---------- track ---------- */
+$("#tBtn").onclick=async()=>{ const id=$("#tId").value.trim().toUpperCase(), em=$("#tEmail").value.trim().toLowerCase(), out=$("#tOut");
+  if(!id||!em){ out.innerHTML='<div class="msg err">Enter your order number and email.</div>'; return; }
+  if(!CONFIG.API_URL){ out.innerHTML='<span class="pill p">Preview</span> Tracking works once the site is connected to the Sheet.'; return; }
+  out.textContent="Checking…";
+  try{ const r=await fetch(`${CONFIG.API_URL}?action=status&id=${encodeURIComponent(id)}&email=${encodeURIComponent(em)}`), j=await r.json();
+    if(!j.ok){ out.innerHTML=`<div class="msg err">${j.error}</div>`; return; }
+    const cls=/verif|ready|released|production/i.test(j.status)?"v":(/cancel|issue/i.test(j.status)?"x":"p");
+    out.innerHTML=`<span class="pill ${cls}">${j.status}</span><div style="margin-top:8px;color:var(--muted)">${j.items}<br>Total ${peso(j.total)} · placed ${j.placed}</div>${j.note?`<div style="margin-top:6px">${j.note}</div>`:""}`; }
+  catch(e){ out.innerHTML='<div class="msg err">Could not reach the order list. Try again later.</div>'; } };
+
+/* ---------- scroll effects ---------- */
+let io;
+function observe(){
+  if(reduce||!("IntersectionObserver" in window)) return;
+  io = io || new IntersectionObserver(es=>es.forEach(en=>{ if(en.isIntersecting){ en.target.classList.remove("pre"); io.unobserve(en.target); } }),{rootMargin:"0px 0px -8% 0px"});
+  $$(".rv:not(.seen)").forEach(el=>{ el.classList.add("seen"); const r=el.getBoundingClientRect(); if(r.top>innerHeight){ el.classList.add("pre"); io.observe(el); } });
+}
+function onScroll(){
+  const h=document.documentElement, p=h.scrollTop/(h.scrollHeight-h.clientHeight||1);
+  $("#scrollbar").style.transform=`scaleX(${p})`;
+  $("#top").classList.toggle("solid", h.scrollTop>40 || current!=="home");
+}
+addEventListener("scroll",onScroll,{passive:true});
+
+
+/* ---------- pages (hash router) ---------- */
+const VIEWS=["home","shop","pieces","bag","help"];
+let current="home";
+function show(v){
+  if(v==="shirt"){ history.replaceState(null,"","#shop"); v="shop"; setTimeout(()=>openShirt(),400); }
+  if(!VIEWS.includes(v)) v="home";
+  const changed = v!==current; current=v;
+  VIEWS.forEach(n=>{ const el=$("#v-"+n); el.hidden = n!==v; if(n===v && changed){ el.style.animation="none"; void el.offsetWidth; el.style.animation=""; } });
+  $$("[data-nav]").forEach(a=>{ if(a.dataset.nav===v) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current"); });
+  window.scrollTo(0,0);
+  const titles={home:"HOMEBOUND MAAP Merch",shop:"Sets · HOMEBOUND",pieces:"Pieces · HOMEBOUND",bag:"Your bag · HOMEBOUND",help:"Track & FAQ · HOMEBOUND"};
+  document.title=titles[v];
+  if(v==="help") setTimeout(()=>$("#tlFill").style.transform="scaleX(1)",200); else $("#tlFill").style.transform="scaleX(.08)";
+  onScroll();
+}
+addEventListener("hashchange",()=>show(location.hash.slice(1)));
+/* ---------- init ---------- */
+if(!CONFIG.API_URL){ $("#demoBar").hidden=false; document.body.classList.add("isdemo"); }
+setEdition(edition,true); renderBag(); loadStats(); show(location.hash.slice(1)); startAuto();
+if(new Date()>new Date(CONFIG.DEADLINE)) closeOrders("Pre-orders closed on 30 November. Thank you!");
+</script>
+</body>
+</html>
