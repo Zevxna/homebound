@@ -245,6 +245,8 @@ section{padding:90px 0;position:relative}
 .nudge{margin-top:12px;display:flex;gap:12px;align-items:center;background:color-mix(in srgb,var(--accent) 12%,#fff);border-radius:16px;padding:10px 12px;font-size:13px}
 .nudge img{width:44px;height:44px;border-radius:10px;object-fit:cover}
 .total{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--line);margin-top:16px;padding-top:14px}
+.shipline{display:flex;justify-content:space-between;margin-top:14px;font-size:14px;color:var(--muted)}
+.shipline span:last-child{font-variant-numeric:tabular-nums;color:var(--ink);font-weight:600}
 .total b{font:800 30px var(--display);font-variant-numeric:tabular-nums}
 .field{display:grid;gap:5px;margin-bottom:12px}
 .field label{font-size:12.5px;font-weight:700}
@@ -421,9 +423,9 @@ footer b{color:#fff;font-family:var(--display);letter-spacing:.18em}
 </div>
 <div class="marquee" aria-hidden="true"><div id="mq"></div></div>
 <div class="jump wrap">
-  <a href="#shop" class="jc"><span class="jn">01</span><b>Build a set</b><span>4 sets from ₱120</span></a>
+  <a href="#shop" class="jc"><span class="jn">01</span><b>Build a set</b><span>4 sets from ₱140</span></a>
   <a href="#pieces" class="jc"><span class="jn">02</span><b>See the pieces</b><span>7 items up close</span></a>
-  <a href="#shop" class="jc" data-openshirt="1"><span class="jn">03</span><b>Add the shirt</b><span>Optional · ₱370 · with any set</span></a>
+  <a href="#shop" class="jc" data-openshirt="1"><span class="jn">03</span><b>Add the shirt</b><span>Optional · ₱410 · with any set</span></a>
   <a href="#help" class="jc"><span class="jn">04</span><b>Track &amp; FAQ</b><span>Order status, how it works</span></a>
 </div>
 </div>
@@ -473,6 +475,7 @@ footer b{color:#fff;font-family:var(--display);letter-spacing:.18em}
         <h3>Order summary</h3>
         <div class="lines" id="lines"></div>
         <div id="nudge"></div>
+        <div class="shipline" id="shipLine" hidden><span>Shipping fee</span><span id="shipAmt"></span></div>
         <div class="total"><span>Total to pay</span><b id="total">₱0</b></div>
       </div>
       <form class="panel" id="coForm" novalidate>
@@ -542,8 +545,8 @@ footer b{color:#fff;font-family:var(--display);letter-spacing:.18em}
       <details><summary>Who can order?</summary><p>Midshipmen of Classes 2027 to 2030, using a MAAP email. The Academy Edition carries the MAAP crest instead of a class seal, so it suits Class 2030 and anyone who wants plain MAAP merch.</p></details>
       <details><summary>Can I order for my family?</summary><p>Yes. Add as many sets as you like, in any edition. The Academy Edition makes a good pasalubong for parents and siblings.</p></details>
       <details><summary>When do I get my items?</summary><p>Orders close 30 Nov. Release is aimed before the 16 Dec break, per company, against your order number. We will announce the exact date.</p></details>
-      <details><summary>How do I pay?</summary><p>Scan the QR with GCash, Maya or any bank app, pay the exact total, then upload the screenshot and type the reference number. Orders without a matching payment are not produced.</p></details>
-      <details><summary>Are the photos the real items?</summary><p>They are mock-ups made for this sale. Final items follow the same layout; shades can vary slightly between printers. Pen colours depend on supplier stock.</p></details>
+      <details><summary>How do I pay?</summary><p>Scan the QR with GCash, Maya or any bank app, pay the exact total (a flat ₱20 shipping fee is added once per order), then upload the screenshot and type the reference number. Orders without a matching payment are not produced.</p></details>
+      <details><summary>Are the photos the real items?</summary><p>They are mock-ups made for this sale. Final items follow the same layout; shades can vary slightly between printers.</p></details>
       <details><summary>Can I change or cancel?</summary><p>Message the Logistics committee before 30 Nov with your order number. After production starts, orders are final.</p></details>
       <details><summary>Where does the money go?</summary><p>To the Class 2028 class fund, for approved class activities. A financial report is submitted to the DMA after distribution.</p></details>
     </div>
@@ -568,9 +571,11 @@ footer b{color:#fff;font-family:var(--display);letter-spacing:.18em}
       <div class="hd"><div><div class="eyebrow" id="mEd"></div><h3 id="mTitle">Set</h3></div><button class="x" type="button" id="mClose" aria-label="Close">×</button></div>
       <div style="font-size:12.5px;color:var(--muted)" id="mItems"></div>
       <div class="opt"><span>EDITION</span><div class="chips" id="oEd"></div></div>
-      <div class="opt" id="optCover"><span>NOTEBOOK &amp; TICKLER COVER</span><div class="chips" id="oCover"></div></div>
-      <div class="opt" id="optPen"><span>BALLPEN COLOUR <small style="font-weight:500;color:var(--muted);letter-spacing:0">(subject to supplier stock)</small></span><div class="chips" id="oPen"></div></div>
+      <div class="opt" id="optCover"><span>TICKLER (A6) COLOUR</span><div class="chips" id="oCover"></div></div>
+      <div class="opt" id="optNotebook"><span>NOTEBOOK (A5) COLOUR</span><div class="chips" id="oNotebook"></div></div>
+      <div class="opt" id="optPen"><span>BALLPEN COLOUR</span><div class="chips" id="oPen"></div></div>
       <div class="opt" id="optPin"><span>BUTTON PIN</span><div class="chips" id="oPin"></div></div>
+      <div class="opt" id="optTumbler"><span>TUMBLER COLOUR</span><div class="chips" id="oTumbler"></div></div>
       <div class="opt" id="optShirt"><span id="shirtLbl">ADD THE SHIRT</span><div class="chips" id="oShirt"></div></div>
       <div class="opt"><span>QUANTITY</span><div class="stepper"><button type="button" id="mMinus" aria-label="Less">−</button><b id="mQty">1</b><button type="button" id="mPlus" aria-label="More">+</button></div></div>
       <div class="foot"><b id="mPrice">₱0</b><button class="btn btn-accent" type="button" id="mAdd">Add to bag</button></div>
@@ -587,7 +592,8 @@ const CONFIG = {
   DEADLINE: "2026-11-30T23:59:00+08:00",
   SUPPLIER_MIN: 100,
   EMAIL_DOMAIN: "maap.edu.ph",
-  SHIRT_PRICE: 370,
+  SHIRT_PRICE: 410,
+  SHIPPING_FEE: 20,                       // flat per order
   MAX_QTY: 10
 };
 /* ====================================================== */
@@ -600,22 +606,24 @@ const ED = {
 };
 const ITEMS = {
   mug:{name:"Mug", desc:"White ceramic, wrap print in Academy blue", views:[["Front","mug"]]},
-  tumbler:{name:"Tumbler", desc:"500 ml white stainless, full wrap", views:[["Front","tumbler"]]},
-  tickler:{name:"Tickler", desc:"A6 hardcover with elastic band", views:[["Navy & gold","tickler_navy"],["Ivory & navy","tickler_ivory"]]},
-  notebook:{name:"Notebook", desc:"A5 hardcover, ruled pages", views:[["Navy & gold","notebook_navy"],["Ivory & navy","notebook_ivory"]]},
+  tumbler:{name:"Tumbler", desc:"500 ml stainless, full wrap · white, black or navy", views:[["White","tumbler_white"],["Black","tumbler_black"],["Navy","tumbler_navy"]]},
+  tickler:{name:"Tickler", desc:"A6 hardcover with elastic band · royal blue or white", views:[["Royal blue","tickler_royal"],["White","tickler_white"]]},
+  notebook:{name:"Notebook", desc:"A5 hardcover, ruled pages · navy or cream", views:[["Navy","notebook_navy"],["Cream","notebook_cream"]]},
   tote:{name:"Tote bag", desc:"Khaki canvas, 12 x 14 in, printed both sides", views:[["Seal side","tote"],["Name side","tote_a"]]},
-  pen:{name:"Ballpen", desc:"Blue, white or beige with your class name", views:[["All colours","pen"]]},
+  pen:{name:"Ballpen", desc:"Gold, white or blue with your class name", views:[["All colours","pen"]]},
   pin:{name:"Button pin", desc:"2.25 in, classic or outline", views:[["Classic","pin_classic"],["Outline","pin_outline"]]}
 };
 const SETS = [
-  {id:1, name:"Tickler Set", price:120, items:["tickler","pen"], note:"The essentials"},
-  {id:2, name:"Mess Set", price:220, items:["tickler","pen","pin","mug"], note:"For your morning coffee"},
-  {id:3, name:"Deck Set", price:520, items:["tickler","pen","notebook","tote","tumbler"], note:"Everyday carry"},
-  {id:4, name:"Full Fleet Set", price:610, items:["tickler","pen","pin","mug","notebook","tote","tumbler"], note:"All seven pieces", feature:true}
+  {id:1, name:"Tickler Set", price:140, items:["tickler","pen"], note:"The essentials"},
+  {id:2, name:"Mess Set", price:240, items:["tickler","pen","pin","mug"], note:"For your morning coffee"},
+  {id:3, name:"Deck Set", price:590, items:["tickler","pen","notebook","tote","tumbler"], note:"Everyday carry"},
+  {id:4, name:"Full Fleet Set", price:690, items:["tickler","pen","pin","mug","notebook","tote","tumbler"], note:"All seven pieces", feature:true}
 ];
-const THUMB = {mug:"mug",tumbler:"tumbler",tickler:"tickler_navy",notebook:"notebook_navy",tote:"tote",pen:"pen",pin:"pin_classic"};
-const COVERS = {navy:{label:"Navy & gold", sw:"#18264e"}, ivory:{label:"Ivory & navy", sw:"#eee7d6"}};
-const PENS = {blue:{label:"Blue", sw:"#1b2f6e"}, white:{label:"White", sw:"#ffffff"}, beige:{label:"Beige", sw:"#d9c7a0"}};
+const THUMB = {mug:"mug",tumbler:"tumbler_white",tickler:"tickler_royal",notebook:"notebook_navy",tote:"tote",pen:"pen",pin:"pin_classic"};
+const TICKLERS = {royal:{label:"Royal blue", sw:"#2448ac"}, white:{label:"White", sw:"#ffffff"}};
+const NOTEBOOKS = {navy:{label:"Navy", sw:"#18264e"}, cream:{label:"Cream", sw:"#ece1c6"}};
+const PENS = {gold:{label:"Gold", sw:"#c4a35e"}, white:{label:"White", sw:"#ffffff"}, blue:{label:"Blue", sw:"#2448b0"}};
+const TUMBLERS = {white:{label:"White", sw:"#ffffff"}, black:{label:"Black", sw:"#161616"}, navy:{label:"Navy", sw:"#18264e"}};
 const PINS = {classic:{label:"Classic"}, outline:{label:"Outline"}};
 const SIZES = ["XS","S","M","L","XL","2XL","3XL","5XL"];
 
@@ -625,7 +633,7 @@ const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const pic = (ed,k) => `img/${ed}/${k}.jpg`;
 const edLabel = ed => ED[ed].year + (ed==="mp" ? "" : " · " + ED[ed].name);
 let edition = "mp", bag = [];
-try { bag = JSON.parse(localStorage.getItem("hb_bag")||"[]"); if(!Array.isArray(bag)) bag=[]; } catch(e){ bag=[]; }
+try { bag = JSON.parse(localStorage.getItem("hb_bag")||"[]"); if(!Array.isArray(bag)) bag=[]; bag = bag.filter(l=>l.type==="shirt" || (l.tickler && PENS[l.pen])); } catch(e){ bag=[]; }
 /* Always open on the Academy Edition; buyers switch to their class from there. */
 const save = () => { try{ localStorage.setItem("hb_bag",JSON.stringify(bag)); localStorage.setItem("hb_ed",edition);}catch(e){} };
 function toast(t){ const el=$("#toast"); el.innerHTML=t; el.classList.add("show"); clearTimeout(toast.t); toast.t=setTimeout(()=>el.classList.remove("show"),3200); }
@@ -748,24 +756,26 @@ document.addEventListener("click", e=>{ const a=e.target.closest("[data-openshir
 /* ---------- configurator ---------- */
 let draft=null, pvView=0;
 function chips(el,map,val,key){ el.innerHTML=Object.entries(map).map(([k,v])=>`<button type="button" data-k="${k}" aria-pressed="${k===val}">${v.sw?`<i class="sw" style="background:${v.sw}"></i>`:""}${v.label}</button>`).join("");
-  el.onclick=e=>{ const b=e.target.closest("[data-k]"); if(!b) return; draft[key]= (key==="shirt" && b.dataset.k==="none") ? null : b.dataset.k; if(key==="shirt" && draft.kind==="set") pvView = draft.shirt ? pvList().length-1 : 0; if(key==="cover") pvView=Math.max(0,pvList().findIndex(p=>p[0].startsWith("Cover"))); if(key==="pin") pvView=pvList().findIndex(p=>p[0]==="Pin"); renderDraft(); }; }
+  el.onclick=e=>{ const b=e.target.closest("[data-k]"); if(!b) return; draft[key]= (key==="shirt" && b.dataset.k==="none") ? null : b.dataset.k;
+    const want={tickler:"Tickler",notebook:"Notebook",pen:"Pens",pin:"Pin",tumbler:"Tumbler",shirt:"Shirt"}[key];
+    if(want && draft.kind==="set"){ const i=pvList().findIndex(p=>p[0]===want); pvView = i<0?0:i; } renderDraft(); }; }
 function pvList(){
   const e=draft.edition, L=[];
   if (draft.kind==="shirt") return [["Front",pic(e,"shirt")],["Back",pic(e,"shirt_back")]];
   const s=SETS.find(x=>x.id===draft.set);
-  L.push(["Cover", pic(e,`${s.items.includes("notebook")?"notebook":"tickler"}_${draft.cover}`)]);
-  if (s.items.includes("notebook")) L.push(["Tickler", pic(e,`tickler_${draft.cover}`)]);
+  L.push(["Tickler", pic(e,`tickler_${draft.tickler}`)]);
+  if (draft.notebook) L.push(["Notebook", pic(e,`notebook_${draft.notebook}`)]);
+  L.push(["Pens", pic(e,"pen")]);
   if (draft.pin) L.push(["Pin", pic(e,`pin_${draft.pin}`)]);
   if (s.items.includes("mug")) L.push(["Mug", pic(e,"mug")]);
-  if (s.items.includes("tumbler")) L.push(["Tumbler", pic(e,"tumbler")]);
+  if (draft.tumbler) L.push(["Tumbler", pic(e,`tumbler_${draft.tumbler}`)]);
   if (s.items.includes("tote")) L.push(["Tote", pic(e,"tote")]);
-  L.push(["Pens", pic(e,"pen")]);
   if (draft.shirt) L.push(["Shirt", pic(e,"shirt")]);
   return L;
 }
 let opener=null;
 function openSet(id, btn){ opener=btn; const s=SETS.find(x=>x.id===id);
-  draft={kind:"set", set:id, edition, cover:"navy", pen:"blue", pin:s.items.includes("pin")?"classic":null, shirt:null, qty:1}; pvView=0;
+  draft={kind:"set", set:id, edition, tickler:"royal", notebook:s.items.includes("notebook")?"navy":null, pen:"gold", pin:s.items.includes("pin")?"classic":null, tumbler:s.items.includes("tumbler")?"white":null, shirt:null, qty:1}; pvView=0;
   $("#mPrice").dataset.v=s.price; renderDraft(); $("#modal").classList.add("open"); $("#mClose").focus(); }
 function openShirt(btn){ opener=btn||null;
   draft={kind:"shirt", edition, shirt:"M", qty:1}; pvView=0;
@@ -779,7 +789,9 @@ function renderDraft(){
   $("#mItems").textContent= isShirt ? "White crew-neck · seal on the left chest, class name across the shoulders, motto on the sleeve" : s.items.map(k=>ITEMS[k].name).join(" · ") + (draft.shirt ? ` · Shirt (${draft.shirt})` : "");
   chips($("#oEd"), Object.fromEntries(Object.entries(ED).map(([k,v])=>[k,{label:k==="mp"?"Academy":v.year.replace("Class ","")}])), draft.edition, "edition");
   $("#optCover").hidden=$("#optPen").hidden=isShirt;
-  if(!isShirt){ chips($("#oCover"),COVERS,draft.cover,"cover"); chips($("#oPen"),PENS,draft.pen,"pen"); }
+  if(!isShirt){ chips($("#oCover"),TICKLERS,draft.tickler,"tickler"); chips($("#oPen"),PENS,draft.pen,"pen"); }
+  $("#optNotebook").hidden=isShirt||!draft.notebook; if(!isShirt&&draft.notebook) chips($("#oNotebook"),NOTEBOOKS,draft.notebook,"notebook");
+  $("#optTumbler").hidden=isShirt||!draft.tumbler; if(!isShirt&&draft.tumbler) chips($("#oTumbler"),TUMBLERS,draft.tumbler,"tumbler");
   $("#optPin").hidden=isShirt||!draft.pin; if(!isShirt&&draft.pin) chips($("#oPin"),PINS,draft.pin,"pin");
   $("#shirtLbl").innerHTML = isShirt ? "SIZE" : `ADD THE SHIRT <small style="font-weight:500;color:var(--muted);letter-spacing:0">(optional · +${peso(CONFIG.SHIRT_PRICE)} each)</small>`;
   const sizeMap = Object.fromEntries((isShirt?[]:[["none",{label:"No shirt"}]]).concat(SIZES.map(z=>[z,{label:z}])));
@@ -817,11 +829,16 @@ function bump(){ const b=$("#bagTop"); b.classList.remove("bump"); void b.offset
 /* ---------- bag ---------- */
 function lineInfo(l){
   if (l.type==="shirt") return {title:`Shirt · ${l.size}`, meta:edLabel(l.edition), price:CONFIG.SHIRT_PRICE, img:pic(l.edition,"shirt")};
-  const s=SETS.find(x=>x.id===l.set), bits=[edLabel(l.edition), COVERS[l.cover].label+" cover", PENS[l.pen].label+" pen"];
+  const s=SETS.find(x=>x.id===l.set), bits=[edLabel(l.edition), TICKLERS[l.tickler].label+" tickler"];
+  if (l.notebook) bits.push(NOTEBOOKS[l.notebook].label+" notebook");
+  bits.push(PENS[l.pen].label+" pen");
   if (l.pin) bits.push(PINS[l.pin].label+" pin");
-  return {title:s.name, meta:bits.join(" · "), price:s.price, img:pic(l.edition, s.items.includes("notebook")?`notebook_${l.cover}`:`tickler_${l.cover}`)};
+  if (l.tumbler) bits.push(TUMBLERS[l.tumbler].label+" tumbler");
+  return {title:s.name, meta:bits.join(" · "), price:s.price, img:pic(l.edition, l.notebook?`notebook_${l.notebook}`:`tickler_${l.tickler}`)};
 }
-const bagTotal=()=>bag.reduce((t,l)=>t+lineInfo(l).price*l.qty,0);
+const itemsTotal=()=>bag.reduce((t,l)=>t+lineInfo(l).price*l.qty,0);
+const shipFee=()=>bag.length?CONFIG.SHIPPING_FEE:0;
+const bagTotal=()=>itemsTotal()+shipFee();
 function renderBag(){
   $("#bagCount").textContent=$("#dockCount").textContent=bag.reduce((t,l)=>t+l.qty,0);
   $("#lines").innerHTML = bag.length ? bag.map((l,i)=>{ const f=lineInfo(l); return `<div class="line"><img src="${f.img}" alt="">
@@ -829,6 +846,7 @@ function renderBag(){
     <div class="r">${peso(f.price*l.qty)}</div></div>`; }).join("") : `<div class="empty">Your bag is empty.<br><a href="#shop" style="color:var(--ink);font-weight:700">Build a set</a> to start.</div>`;
   const hasShirt=bag.some(l=>l.type==="shirt"), hasSet=bag.some(l=>l.type==="set");
   $("#nudge").innerHTML = hasSet && !hasShirt ? `<div class="nudge"><img src="${pic(edition,"shirt")}" alt=""><span>Complete the look with the shirt for ${peso(CONFIG.SHIRT_PRICE)}.</span><a class="btn btn-dark" style="padding:8px 14px;margin-left:auto;font-size:12px" href="#shop" data-openshirt="1">Add</a></div>` : "";
+  $("#shipLine").hidden=!bag.length; $("#shipAmt").textContent=peso(shipFee());
   countTo($("#total"),bagTotal()); countTo($("#payAmt"),bagTotal());
   $("#st1").classList.toggle("on",true); $("#st2").classList.toggle("on",bag.length>0);
 }
