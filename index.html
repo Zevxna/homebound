@@ -516,7 +516,7 @@ footer b{color:#fff;font-family:var(--display);letter-spacing:.18em}
           </div>
           <div class="field"><label for="fRef">Reference number</label><input id="fRef" inputmode="numeric" placeholder="From your payment receipt"></div>
           <div class="field"><label for="fReceipt">Payment screenshot</label>
-            <label class="drop" id="drop" for="fReceipt">Tap to upload your receipt (image or PDF, up to 5 MB)</label>
+            <label class="drop" id="drop" for="fReceipt">Tap to upload your receipt (screenshot, photo or PDF)</label>
             <input id="fReceipt" class="sr" type="file" accept="image/*,application/pdf"></div>
           <label class="check"><input type="checkbox" id="fAgree"><span>I understand this pre-order is <b>optional</b>, that I paid the exact total above, and that orders are final once production starts.</span></label>
           <button class="btn btn-accent" type="submit" id="submitBtn" style="width:100%">Place pre-order</button>
@@ -886,12 +886,22 @@ function closeOrders(msg){ $("#submitBtn").disabled=true; $("#formMsg").innerHTM
 
 /* ---------- receipt ---------- */
 let receipt=null;
-$("#fReceipt").addEventListener("change", async e=>{ const f=e.target.files[0], d=$("#drop"); receipt=null; d.classList.remove("has"); d.textContent="Tap to upload your receipt (image or PDF, up to 5 MB)"; $("#st3").classList.remove("on");
-  if(!f) return; if(f.size>5*1024*1024){ d.textContent="That file is over 5 MB. Upload a screenshot instead."; return; }
-  try{ receipt = f.type.startsWith("image/") ? await shrink(f) : {name:f.name,mime:f.type,data:await toB64(f)}; d.classList.add("has"); d.textContent="✓ "+f.name; $("#st3").classList.add("on"); }
-  catch(err){ d.textContent="Could not read that file. Try another screenshot."; } });
+$("#fReceipt").addEventListener("change", async e=>{ const f=e.target.files[0], d=$("#drop"); receipt=null; d.classList.remove("has"); d.textContent="Tap to upload your receipt (screenshot, photo or PDF)"; $("#st3").classList.remove("on");
+  if(!f) return;
+  const isImg = f.type.startsWith("image/") || /\.(heic|heif)$/i.test(f.name);
+  if(!isImg && f.size>5*1024*1024){ d.textContent="That PDF is over 5 MB. Upload a screenshot instead."; return; }
+  if(isImg && f.size>40*1024*1024){ d.textContent="That image is too large. Upload a screenshot instead."; return; }
+  d.textContent="Preparing your receipt…";
+  try{
+    if(isImg){
+      // Screenshots and photos of any size are resized here to a small, clear JPEG before upload.
+      try { receipt = await shrink(f); }
+      catch(e2){ if(f.size>5*1024*1024) throw e2; receipt={name:f.name,mime:f.type||"image/heic",data:await toB64(f)}; }
+    } else receipt={name:f.name,mime:f.type,data:await toB64(f)};
+    d.classList.add("has"); d.textContent="✓ "+f.name; $("#st3").classList.add("on"); }
+  catch(err){ d.textContent="Could not read that file. Take a screenshot of the receipt and upload that."; } });
 const toB64=f=>new Promise((res,rej)=>{ const r=new FileReader(); r.onload=()=>res(String(r.result).split(",")[1]); r.onerror=rej; r.readAsDataURL(f); });
-function shrink(f){ return new Promise((res,rej)=>{ const u=URL.createObjectURL(f), im=new Image(); im.onload=()=>{ const k=Math.min(1,1600/Math.max(im.width,im.height)), c=document.createElement("canvas"); c.width=Math.round(im.width*k); c.height=Math.round(im.height*k); c.getContext("2d").drawImage(im,0,0,c.width,c.height); URL.revokeObjectURL(u); res({name:f.name.replace(/\.[^.]+$/,"")+".jpg",mime:"image/jpeg",data:c.toDataURL("image/jpeg",.85).split(",")[1]}); }; im.onerror=rej; im.src=u; }); }
+function shrink(f){ return new Promise((res,rej)=>{ const u=URL.createObjectURL(f), im=new Image(); im.onload=()=>{ const k=Math.min(1,1200/im.width,4000/im.height), c=document.createElement("canvas"); c.width=Math.round(im.width*k); c.height=Math.round(im.height*k); c.getContext("2d").drawImage(im,0,0,c.width,c.height); URL.revokeObjectURL(u); res({name:f.name.replace(/\.[^.]+$/,"")+".jpg",mime:"image/jpeg",data:c.toDataURL("image/jpeg",.85).split(",")[1]}); }; im.onerror=rej; im.src=u; }); }
 
 /* ---------- submit ---------- */
 function fail(msg,el){ $("#formMsg").innerHTML=`<div class="msg err">${msg}</div>`; if(el) el.focus(); $("#formMsg").scrollIntoView({block:"center",behavior:reduce?"auto":"smooth"}); }
